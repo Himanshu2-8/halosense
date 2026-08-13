@@ -109,6 +109,7 @@ class ClipAnalysis(BaseModel):
     mood:    MoodVerdict
     lap_context: Optional[LapContext] = None
     audio_url: str
+    audio_peaks: list[float] = []
     processed_at: str
     processing_ms: int
     mocked: bool = False

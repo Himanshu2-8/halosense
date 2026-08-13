@@ -74,6 +74,7 @@ export interface ClipAnalysis {
   mood: MoodVerdict;
   lap_context: LapContext | null;
   audio_url: string;
+  audio_peaks: number[];
   processed_at: string;
   processing_ms: number;
   mocked: boolean;

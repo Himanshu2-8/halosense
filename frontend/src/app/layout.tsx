@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import DevBanner from "../components/DevBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Silent Co-Driver",
-  description: "F1 driver stress detection from team radio audio",
+  title: "HaloSense Frontend",
+  description: "F1 Radio Emotion Analysis",
 };
 
 export default function RootLayout({
@@ -16,9 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-[#0a0a0f] text-gray-200 overflow-hidden h-screen`}>
-        <DevBanner />
+    <html lang="en">
+      <body className={inter.className}>
         {children}
       </body>
     </html>
