@@ -1,0 +1,109 @@
+# ─────────────────────────────────────────────────────────────
+# Silent Co-Driver — .gitignore
+# Read docs/GIT_WORKFLOW.md before changing this file.
+# Rule: if a file is machine-generated or >5 MB, it belongs here.
+# ─────────────────────────────────────────────────────────────
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+.ipynb_checkpoints/
+
+# ── Node / Next.js ───────────────────────────────────────────
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+.vercel/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── Secrets & local config ───────────────────────────────────
+# NEVER commit these. Commit the .example files instead.
+.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env.local
+!*.example
+
+# ── FastF1 cache (regenerable, hundreds of MB) ───────────────
+# Anyone can rebuild this by running scripts/fetch_laps.py
+backend/.fastf1_cache/
+.fastf1_cache/
+cache/
+
+# ── HuggingFace model weights (GBs — never commit) ───────────
+# Cached to ~/.cache/huggingface by default; this covers a local override.
+.hf_cache/
+models/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.onnx
+
+# ── Raw / intermediate audio (see docs/DATASET.md) ───────────
+# We COMMIT the final 16 kHz mono WAV clips in data/clips/ (~10 MB total)
+# because the demo must work on a fresh clone with zero setup.
+# We do NOT commit the raw downloads they were cut from.
+data/raw/
+data/tmp/
+*.mp4
+*.mkv
+*.webm
+*.m4a
+*.part
+*.ytdl
+
+# Uploads made through the live /api/analyze path at runtime
+backend/data/uploads/
+data/uploads/
+
+# ── OS / editor noise ────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# ── Claude Code local state ──────────────────────────────────
+.claude/settings.local.json
+
+# ─────────────────────────────────────────────────────────────
+# EXPLICITLY TRACKED (do not add these to the ignore list)
+#   data/clips/*.wav        — the demo dataset, ~10 MB, must survive a clone
+#   data/metadata.csv       — clip → driver/race/lap mapping
+#   data/labels.csv         — hand labels for the eval set
+#   data/laps/*.json        — FastF1 dumps, small, so the demo works offline
+#   data/cache/analyses.json— precomputed model output, powers the demo
+#   docs/*.md               — planning docs (see note in GIT_WORKFLOW.md
+#                             about untracking these after the hackathon)
+# ─────────────────────────────────────────────────────────────

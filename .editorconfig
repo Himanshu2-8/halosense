@@ -1,0 +1,47 @@
+# EditorConfig — consistent formatting across all editors and OSes
+# https://editorconfig.org
+#
+# This file ensures 3 people on 3 machines (Windows, macOS) produce
+# identical whitespace, line endings, and indentation. Without it,
+# every PR has phantom diffs from tabs↔spaces and LF↔CRLF fights.
+
+root = true
+
+# ── Defaults ──────────────────────────────────────────────────────
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+# ── Python ────────────────────────────────────────────────────────
+[*.py]
+indent_size = 4
+
+# ── JavaScript / TypeScript / JSON ────────────────────────────────
+[*.{js,jsx,ts,tsx,json,mjs,cjs}]
+indent_size = 2
+
+# ── CSS / HTML ────────────────────────────────────────────────────
+[*.{css,scss,html}]
+indent_size = 2
+
+# ── YAML / TOML / Config ─────────────────────────────────────────
+[*.{yml,yaml,toml}]
+indent_size = 2
+
+# ── Markdown ──────────────────────────────────────────────────────
+[*.md]
+trim_trailing_whitespace = false
+indent_size = 2
+
+# ── Makefiles ─────────────────────────────────────────────────────
+[Makefile]
+indent_style = tab
+
+# ── CSV (don't mess with it) ──────────────────────────────────────
+[*.csv]
+trim_trailing_whitespace = false
+insert_final_newline = false
