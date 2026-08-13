@@ -12,6 +12,7 @@ export default function AudioPlayer({ url, onTimeUpdate }: AudioPlayerProps) {
   const wavesurferRef = useRef<WaveSurfer | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isReady, setIsReady] = useState(false);
+  const [audioUnavailable, setAudioUnavailable] = useState(false);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -56,18 +57,18 @@ export default function AudioPlayer({ url, onTimeUpdate }: AudioPlayerProps) {
     if (wavesurferRef.current && url) {
       setIsReady(false);
       setIsPlaying(false);
+      setAudioUnavailable(false);
       
-      // In mock mode, url is empty string, handle gracefully
+      // In mock mode or no url, handle gracefully
       if (url === "") {
-        // Just empty it, can't play anything
         wavesurferRef.current.empty();
         return;
       }
       
       wavesurferRef.current.load(url).catch((err) => {
-        // Ignore abort errors from ws.destroy()
         if (err.name !== "AbortError") {
-          console.error("Wavesurfer load error:", err);
+          // Silently mark as unavailable instead of logging to console
+          setAudioUnavailable(true);
         }
       });
     }
@@ -99,9 +100,11 @@ export default function AudioPlayer({ url, onTimeUpdate }: AudioPlayerProps) {
         </button>
         <div className="flex-1 overflow-hidden" ref={containerRef}></div>
       </div>
-      {url === "" && (
+      {(url === "" || audioUnavailable) && (
         <div className="text-center text-xs text-yellow-500/70 mt-2">
-          Audio playback disabled in mock mode
+          {audioUnavailable
+            ? "Audio file not found — place .wav in data/clips/ to enable playback"
+            : "Audio playback disabled in mock mode"}
         </div>
       )}
     </div>

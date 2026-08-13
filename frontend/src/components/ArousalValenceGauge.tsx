@@ -1,5 +1,5 @@
 // frontend/src/components/ArousalValenceGauge.tsx
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ReferenceLine, ResponsiveContainer } from 'recharts';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, ReferenceLine, ResponsiveContainer, Cell } from 'recharts';
 
 interface ArousalValenceGaugeProps {
   arousal: number;
@@ -52,12 +52,16 @@ export default function ArousalValenceGauge({ arousal, valence, quadrant }: Arou
             <ReferenceLine x={0.5} stroke="#4b5563" />
             <ReferenceLine y={0.5} stroke="#4b5563" />
             
-            <Scatter data={data} fill={dotColor} shape="circle">
-              {
-                data.map((entry, index) => (
-                  <circle key={`cell-${index}`} fill={dotColor} cx="0" cy="0" r="8" className="animate-pulse" />
-                ))
-              }
+            <Scatter
+              data={data}
+              shape={(props: any) => {
+                const { cx, cy } = props;
+                return (
+                  <circle cx={cx} cy={cy} r={10} fill={dotColor} stroke={dotColor} strokeOpacity={0.4} strokeWidth={6} />
+                );
+              }}
+            >
+              <Cell fill={dotColor} />
             </Scatter>
           </ScatterChart>
         </ResponsiveContainer>

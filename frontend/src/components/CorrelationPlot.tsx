@@ -1,6 +1,6 @@
 // frontend/src/components/CorrelationPlot.tsx
-import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
-import { CorrelationPoint, CorrelationSummary } from '../lib/types';
+import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ReferenceLine, Cell } from 'recharts';
+import { CorrelationSummary } from '../lib/types';
 
 interface CorrelationPlotProps {
   data: CorrelationSummary | null;
@@ -85,13 +85,10 @@ export default function CorrelationPlot({ data }: CorrelationPlotProps) {
             <Tooltip content={<CustomTooltip />} cursor={{ strokeDasharray: '3 3', stroke: '#4b5563' }} />
             <ReferenceLine y={0} stroke="#4b5563" />
             
-            {/* Draw separate scatters to have a legend if we wanted, or just map colors in one scatter */}
             <Scatter name="Clips" data={chartData} fill="#8884d8">
-              {
-                chartData.map((entry, index) => (
-                  <circle key={`cell-${index}`} fill={entry.fill} cx="0" cy="0" r="5" />
-                ))
-              }
+              {chartData.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={entry.fill} />
+              ))}
             </Scatter>
           </ScatterChart>
         </ResponsiveContainer>

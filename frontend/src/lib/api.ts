@@ -2,14 +2,15 @@
 import type { ClipAnalysis, ClipSummary, CorrelationSummary, HealthStatus } from "./types";
 import { MOCK_CLIPS, MOCK_CORRELATION } from "./mock";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+// Use relative path so Next.js proxy rewrites handle it — no CORS needed.
+const API = "/api";
 const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === "1";
 
 export async function fetchHealth(): Promise<HealthStatus> {
   if (USE_MOCKS) {
     return { status: "ok", mock_ml: true, models_loaded: false, clip_count: MOCK_CLIPS.length, version: "1.0.0" };
   }
-  const res = await fetch(`${API_BASE}/api/health`);
+  const res = await fetch(`${API}/health`);
   if (!res.ok) throw new Error("Backend unreachable");
   return res.json();
 }
@@ -26,13 +27,13 @@ export async function fetchClips(driver?: string, mood?: string): Promise<ClipSu
       stress_index: c.mood.stress_index,
       delta_s: c.lap_context?.delta_s ?? null,
       transcript_preview: c.transcript.length > 60 ? c.transcript.slice(0, 57) + "..." : c.transcript,
-      audio_url: c.audio_url,
+      audio_url: "",
     }));
   }
   const params = new URLSearchParams();
   if (driver) params.set("driver", driver);
   if (mood) params.set("mood", mood);
-  const res = await fetch(`${API_BASE}/api/clips?${params}`);
+  const res = await fetch(`${API}/clips?${params}`);
   if (!res.ok) throw new Error("Failed to fetch clips");
   return res.json();
 }
@@ -41,9 +42,9 @@ export async function fetchClip(clipId: string): Promise<ClipAnalysis> {
   if (USE_MOCKS) {
     const clip = MOCK_CLIPS.find((c) => c.clip_id === clipId);
     if (!clip) throw new Error(`Clip not found: ${clipId}`);
-    return clip;
+    return { ...clip, audio_url: "" };
   }
-  const res = await fetch(`${API_BASE}/api/clips/${clipId}`);
+  const res = await fetch(`${API}/clips/${clipId}`);
   if (!res.ok) throw new Error("Failed to fetch clip");
   return res.json();
 }
@@ -52,7 +53,7 @@ export async function analyzeAudio(file: File, metadata?: { driver?: string; rac
   if (USE_MOCKS) {
     // Simulate a delay
     await new Promise((r) => setTimeout(r, 1500));
-    return MOCK_CLIPS[0]; // Return first mock clip as "analysis result"
+    return { ...MOCK_CLIPS[0], audio_url: "" }; // Return first mock clip as analysis result
   }
   const formData = new FormData();
   formData.append("file", file);
@@ -60,7 +61,7 @@ export async function analyzeAudio(file: File, metadata?: { driver?: string; rac
   if (metadata?.race) formData.append("race", metadata.race);
   if (metadata?.lap) formData.append("lap", String(metadata.lap));
   
-  const res = await fetch(`${API_BASE}/api/analyze`, { method: "POST", body: formData });
+  const res = await fetch(`${API}/analyze`, { method: "POST", body: formData });
   if (!res.ok) {
     const err = await res.json().catch(() => ({ detail: "Analysis failed" }));
     throw new Error(err.detail || "Analysis failed");
@@ -70,12 +71,12 @@ export async function analyzeAudio(file: File, metadata?: { driver?: string; rac
 
 export async function fetchCorrelation(): Promise<CorrelationSummary> {
   if (USE_MOCKS) return MOCK_CORRELATION;
-  const res = await fetch(`${API_BASE}/api/correlation`);
+  const res = await fetch(`${API}/correlation`);
   if (!res.ok) throw new Error("Failed to fetch correlation");
   return res.json();
 }
 
 export function getAudioUrl(clipId: string): string {
-  if (USE_MOCKS) return ""; // No real audio in mock mode
-  return `${API_BASE}/api/audio/${clipId}`;
+  if (USE_MOCKS) return "";
+  return `/api/audio/${clipId}`;
 }

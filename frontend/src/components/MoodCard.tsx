@@ -26,14 +26,14 @@ export default function MoodCard({ mood }: { mood: MoodVerdict }) {
 
   return (
     <div className={`rounded-xl border ${bgColor} p-6 flex flex-col gap-4 shadow-lg`}>
-      <div className="flex justify-between items-start">
-        <div>
+      <div className="flex justify-between items-start gap-2">
+        <div className="min-w-0">
           <h2 className="text-gray-400 text-sm font-semibold uppercase tracking-wider mb-1">Detected State</h2>
-          <div className={`text-4xl font-bold tracking-tight ${textColor}`}>
+          <div className={`text-2xl font-bold tracking-widest uppercase ${textColor}`}>
             {mood.label}
           </div>
         </div>
-        <div className="text-right">
+        <div className="text-right shrink-0">
           <div className="text-2xl font-bold text-white">{(mood.confidence * 100).toFixed(0)}%</div>
           <div className="text-gray-400 text-xs">CONFIDENCE</div>
         </div>

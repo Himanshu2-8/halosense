@@ -8,15 +8,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libsndfile1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install
-COPY requirements.txt .
+# Copy requirements and install. Build from the repo root:
+# docker build -f backend/Dockerfile -t halosense-backend .
+COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY app/ ./app/
+COPY backend/app/ ./app/
 
 # Copy data (analyses.json, laps, clips)
-COPY ../data/ ./data/
+COPY data/ ./data/
 
 # HuggingFace Spaces runs on port 7860
 EXPOSE 7860
