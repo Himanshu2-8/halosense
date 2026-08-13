@@ -1,0 +1,3 @@
+# This directory holds the actual WAV audio clips (16kHz mono).
+# Files are NOT committed to git (see .gitignore).
+# Add audio files here manually or via scripts/precompute.py.
