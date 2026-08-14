@@ -6,12 +6,20 @@ import { MOCK_CLIPS, MOCK_CORRELATION } from "./mock";
 const API = "/api";
 const USE_MOCKS = process.env.NEXT_PUBLIC_USE_MOCKS === "1";
 
+async function apiError(response: Response, fallback: string): Promise<Error> {
+  const payload = await response.json().catch(() => null);
+  const detail = payload?.detail;
+  if (typeof detail === "string") return new Error(detail);
+  if (detail && typeof detail.detail === "string") return new Error(detail.detail);
+  return new Error(fallback);
+}
+
 export async function fetchHealth(): Promise<HealthStatus> {
   if (USE_MOCKS) {
     return { status: "ok", mock_ml: true, models_loaded: false, clip_count: MOCK_CLIPS.length, version: "1.0.0" };
   }
   const res = await fetch(`${API}/health`);
-  if (!res.ok) throw new Error("Backend unreachable");
+  if (!res.ok) throw await apiError(res, "Backend unreachable");
   return res.json();
 }
 
@@ -34,7 +42,7 @@ export async function fetchClips(driver?: string, mood?: string): Promise<ClipSu
   if (driver) params.set("driver", driver);
   if (mood) params.set("mood", mood);
   const res = await fetch(`${API}/clips?${params}`);
-  if (!res.ok) throw new Error("Failed to fetch clips");
+  if (!res.ok) throw await apiError(res, "Failed to fetch clips");
   return res.json();
 }
 
@@ -45,7 +53,7 @@ export async function fetchClip(clipId: string): Promise<ClipAnalysis> {
     return { ...clip, audio_url: "" };
   }
   const res = await fetch(`${API}/clips/${clipId}`);
-  if (!res.ok) throw new Error("Failed to fetch clip");
+  if (!res.ok) throw await apiError(res, "Failed to fetch clip");
   return res.json();
 }
 
@@ -60,19 +68,16 @@ export async function analyzeAudio(file: File, metadata?: { driver?: string; rac
   if (metadata?.driver) formData.append("driver", metadata.driver);
   if (metadata?.race) formData.append("race", metadata.race);
   if (metadata?.lap) formData.append("lap", String(metadata.lap));
-  
+
   const res = await fetch(`${API}/analyze`, { method: "POST", body: formData });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({ detail: "Analysis failed" }));
-    throw new Error(err.detail || "Analysis failed");
-  }
+  if (!res.ok) throw await apiError(res, "Analysis failed");
   return res.json();
 }
 
 export async function fetchCorrelation(): Promise<CorrelationSummary> {
   if (USE_MOCKS) return MOCK_CORRELATION;
   const res = await fetch(`${API}/correlation`);
-  if (!res.ok) throw new Error("Failed to fetch correlation");
+  if (!res.ok) throw await apiError(res, "Failed to fetch correlation");
   return res.json();
 }
 

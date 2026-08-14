@@ -10,13 +10,17 @@ CRITICAL: Never import fusion_service at module level — would trigger torch im
 Lane: B
 """
 
-import uuid
-import time
+import json
 import logging
-from datetime import datetime, timezone
+import shutil
+import subprocess
+import time
+import uuid
+from datetime import UTC, datetime
 from pathlib import Path
 
-from fastapi import APIRouter, UploadFile, File, Form, HTTPException
+from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+
 from app.config import settings
 from app.schemas import ClipAnalysis
 
@@ -24,6 +28,59 @@ logger = logging.getLogger(__name__)
 router = APIRouter()
 
 ALLOWED_EXTENSIONS = {".wav", ".mp3", ".m4a", ".ogg", ".flac"}
+
+
+def _probe_audio(path: Path) -> float:
+    """Validate an upload with ffprobe and return its duration in seconds."""
+    ffprobe = shutil.which("ffprobe")
+    if not ffprobe:
+        raise HTTPException(
+            503,
+            detail={
+                "error": "AUDIO_PROBE_UNAVAILABLE",
+                "detail": "The server cannot validate audio because ffprobe is unavailable.",
+                "hint": "Install FFmpeg and ensure ffprobe is on PATH.",
+            },
+        )
+
+    try:
+        completed = subprocess.run(
+            [
+                ffprobe,
+                "-v",
+                "error",
+                "-select_streams",
+                "a:0",
+                "-show_entries",
+                "stream=duration:format=duration",
+                "-of",
+                "json",
+                str(path),
+            ],
+            check=True,
+            capture_output=True,
+            text=True,
+            timeout=15,
+        )
+        payload = json.loads(completed.stdout)
+        streams = payload.get("streams", [])
+        if not streams:
+            raise ValueError("No audio stream found")
+        raw_duration = streams[0].get("duration") or payload.get("format", {}).get("duration")
+        duration = float(raw_duration)
+        if duration <= 0:
+            raise ValueError("Audio duration is zero")
+        return duration
+    except (subprocess.SubprocessError, json.JSONDecodeError, TypeError, ValueError) as exc:
+        logger.info("Rejected invalid audio upload %s: %s", path.name, exc)
+        raise HTTPException(
+            400,
+            detail={
+                "error": "INVALID_AUDIO",
+                "detail": "The uploaded file does not contain readable audio.",
+                "hint": "Upload a valid WAV, MP3, M4A, OGG, or FLAC audio file.",
+            },
+        ) from exc
 
 
 @router.post("/analyze", response_model=ClipAnalysis)
@@ -62,6 +119,15 @@ async def analyze_audio(
     # 2. Read file and check size
     contents = await file.read()
     max_bytes = settings.MAX_UPLOAD_MB * 1024 * 1024
+    if not contents:
+        raise HTTPException(
+            400,
+            detail={
+                "error": "EMPTY_FILE",
+                "detail": "The uploaded audio file is empty.",
+                "hint": "Choose a non-empty audio file and try again.",
+            },
+        )
     if len(contents) > max_bytes:
         raise HTTPException(
             413,
@@ -79,6 +145,21 @@ async def analyze_audio(
     wav_path = upload_dir / f"{clip_id}{ext}"
     wav_path.write_bytes(contents)
 
+    try:
+        duration_s = _probe_audio(wav_path)
+        if duration_s > settings.MAX_AUDIO_SECONDS:
+            raise HTTPException(
+                400,
+                detail={
+                    "error": "AUDIO_TOO_LONG",
+                    "detail": f"Audio is {duration_s:.1f}s; max is {settings.MAX_AUDIO_SECONDS}s.",
+                    "hint": f"Trim the clip to {settings.MAX_AUDIO_SECONDS} seconds or less.",
+                },
+            )
+    except HTTPException:
+        wav_path.unlink(missing_ok=True)
+        raise
+
     # 4. Run analysis
     start_ms = time.time()
 
@@ -91,7 +172,7 @@ async def analyze_audio(
         try:
             from app.services.fusion_service import analyze_audio as run_pipeline  # type: ignore
             result = run_pipeline(str(wav_path), device=settings.DEVICE)
-        except ImportError:
+        except ImportError as exc:
             raise HTTPException(
                 500,
                 detail={
@@ -99,7 +180,7 @@ async def analyze_audio(
                     "detail": "ML pipeline not available (fusion_service missing). Set MOCK_ML=1 for mock mode.",
                     "hint": "Run with MOCK_ML=1 or install torch + transformers.",
                 },
-            )
+            ) from exc
         except Exception as e:
             logger.exception("Inference failed")
             raise HTTPException(
@@ -109,12 +190,15 @@ async def analyze_audio(
                     "detail": f"Model inference failed: {str(e)[:200]}",
                     "hint": "Check server logs for details.",
                 },
-            )
+            ) from e
+
+    # Use the media container duration for playback even when inference is mocked.
+    result["prosody"]["duration_s"] = round(duration_s, 3)
 
     processing_ms = int((time.time() - start_ms) * 1000)
 
     # 5. Enrich with metadata
-    now_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    now_iso = datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
     result.update({
         "clip_id": clip_id,
         "source": "UPLOAD",

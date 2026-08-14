@@ -5,20 +5,20 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   ResponsiveContainer, ScatterChart, Scatter, ReferenceLine, Label, Cell,
 } from "recharts";
-import { fetchClips, fetchClip, fetchCorrelation, analyzeAudio } from "../lib/api";
-import type { ClipSummary, ClipAnalysis, CorrelationSummary, LapPoint } from "../lib/types";
+import { fetchClips, fetchClip, fetchCorrelation, fetchHealth, analyzeAudio } from "../lib/api";
+import type { ClipSummary, ClipAnalysis, CorrelationSummary, HealthStatus, LapPoint } from "../lib/types";
 
 const MOOD_COLORS: Record<string, string> = {
-  Focused:    "#00d4ff",
+  Focused: "#00d4ff",
   Frustrated: "#e8002d",
-  Calm:       "#00e676",
+  Calm: "#00e676",
   Aggressive: "#ff8c00",
-  Anxious:    "#c84bff",
-  Neutral:    "#5a6e8a",
-  STRESSED:   "#e8002d",
-  CALM:       "#00e676",
-  TIRED:      "#ff8c00",
-  UNKNOWN:    "#5a6e8a",
+  Anxious: "#c84bff",
+  Neutral: "#5a6e8a",
+  STRESSED: "#e8002d",
+  CALM: "#00e676",
+  TIRED: "#ff8c00",
+  UNKNOWN: "#5a6e8a",
 };
 
 const TYRE_COLORS: Record<string, string> = {
@@ -28,8 +28,8 @@ const TYRE_COLORS: Record<string, string> = {
 
 const WAVE_BARS = Array.from({ length: 90 }, (_, i) => {
   const envelope = Math.sin((i / 90) * Math.PI);
-  const mid      = 0.4 + 0.45 * Math.sin(i * 0.18) * Math.cos(i * 0.055);
-  const noise    = ((Math.sin(i * 127.1 + 311.7) * 43758.5) % 1 + 1) / 2;
+  const mid = 0.4 + 0.45 * Math.sin(i * 0.18) * Math.cos(i * 0.055);
+  const noise = ((Math.sin(i * 127.1 + 311.7) * 43758.5) % 1 + 1) / 2;
   return Math.max(0.06, Math.min(1, mid * envelope + noise * 0.25));
 });
 
@@ -83,23 +83,13 @@ function Panel({ children, className = "" }: { children: React.ReactNode; classN
 function AudioPlayer({ summary, analysis, onProgress }: { summary: ClipSummary; analysis: ClipAnalysis; onProgress: (p: number) => void }) {
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [mediaError, setMediaError] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPlaying(false);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setProgress(0);
-    if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.src = analysis.audio_url || "";
-    }
-  }, [analysis.clip_id, analysis.audio_url]);
 
   useEffect(() => { onProgress(progress); }, [progress, onProgress]);
 
   const DURATION = summary.duration_s || 18;
-  const fmt  = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s) % 60).padStart(2, "0")}`;
+  const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s) % 60).padStart(2, "0")}`;
   const moodColor = MOOD_COLORS[summary.mood_label] ?? "#e8002d";
   const peaks = analysis.audio_peaks?.length ? analysis.audio_peaks : WAVE_BARS;
 
@@ -113,17 +103,25 @@ function AudioPlayer({ summary, analysis, onProgress }: { summary: ClipSummary; 
   const togglePlay = () => {
     if (!audioRef.current || !audioRef.current.src) return;
     if (playing) audioRef.current.pause();
-    else audioRef.current.play();
-    setPlaying(!playing);
+    else {
+      void audioRef.current.play().then(() => setPlaying(true)).catch(() => {
+        setPlaying(false);
+        setMediaError(true);
+      });
+      return;
+    }
+    setPlaying(false);
   };
 
   return (
     <Panel>
       <SectionLabel>Audio Player · Waveform</SectionLabel>
-      <audio 
-        ref={audioRef} 
+      <audio
+        ref={audioRef}
+        src={analysis.audio_url || undefined}
         onTimeUpdate={(e) => setProgress(e.currentTarget.currentTime / DURATION)}
         onEnded={() => { setPlaying(false); setProgress(1); }}
+        onError={() => { setPlaying(false); setMediaError(true); }}
       />
       <div className="flex items-start justify-between mb-4">
         <div>
@@ -145,7 +143,7 @@ function AudioPlayer({ summary, analysis, onProgress }: { summary: ClipSummary; 
               style={{
                 height: `${h * 100}%`,
                 background: active ? `rgba(232,0,45,${0.5 + h * 0.5})` : `rgba(90,110,138,${0.2 + h * 0.4})`,
-                boxShadow:  active ? "0 0 3px rgba(232,0,45,0.35)" : "none",
+                boxShadow: active ? "0 0 3px rgba(232,0,45,0.35)" : "none",
               }}
             />
           );
@@ -169,6 +167,11 @@ function AudioPlayer({ summary, analysis, onProgress }: { summary: ClipSummary; 
         </div>
         <span className="font-mono text-[11px] text-[#5a6e8a] tabular-nums">{fmt(DURATION)}</span>
       </div>
+      {mediaError && (
+        <p className="mt-3 font-mono text-[9px] text-[#ff8c00]">
+          Audio is unavailable for this clip. The saved analysis remains viewable.
+        </p>
+      )}
     </Panel>
   );
 }
@@ -221,7 +224,7 @@ function ArousalValence({ summary, analysis }: { summary: ClipSummary; analysis:
   // map 0..1 to -50..+50 for display
   const valDisp = Math.round(analysis.prosody.valence * 100 - 50);
   const aroDisp = Math.round(analysis.prosody.arousal * 100 - 50);
-  
+
   const cx = analysis.prosody.valence * S;
   const cy = (1 - analysis.prosody.arousal) * S;
 
@@ -232,22 +235,22 @@ function ArousalValence({ summary, analysis }: { summary: ClipSummary; analysis:
         <svg width={S} height={S} className="overflow-visible">
           {[0.25, 0.5, 0.75].map((t) => (
             <g key={t}>
-              <line x1={t*S} y1={0} x2={t*S} y2={S} stroke="#151f30" strokeWidth={1} />
-              <line x1={0} y1={t*S} x2={S} y2={t*S} stroke="#151f30" strokeWidth={1} />
+              <line x1={t * S} y1={0} x2={t * S} y2={S} stroke="#151f30" strokeWidth={1} />
+              <line x1={0} y1={t * S} x2={S} y2={t * S} stroke="#151f30" strokeWidth={1} />
             </g>
           ))}
-          <line x1={S/2} y1={0}   x2={S/2} y2={S}   stroke="#2a3a55" strokeWidth={1} />
-          <line x1={0}   y1={S/2} x2={S}   y2={S/2} stroke="#2a3a55" strokeWidth={1} />
+          <line x1={S / 2} y1={0} x2={S / 2} y2={S} stroke="#2a3a55" strokeWidth={1} />
+          <line x1={0} y1={S / 2} x2={S} y2={S / 2} stroke="#2a3a55" strokeWidth={1} />
           <rect x={0} y={0} width={S} height={S} fill="none" stroke="#1c2638" strokeWidth={1} />
-          <text x={S/2+4} y={10}      fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">HIGH AROUSAL</text>
-          <text x={S/2+4} y={S-3}     fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">LOW AROUSAL</text>
-          <text x={3}     y={S/2-4}   fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">NEG</text>
-          <text x={S-20}  y={S/2-4}   fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">POS</text>
-          <line x1={cx} y1={0}  x2={cx} y2={S}  stroke={`${color}30`} strokeWidth={0.5} strokeDasharray="3 3" />
-          <line x1={0}  y1={cy} x2={S}  y2={cy} stroke={`${color}30`} strokeWidth={0.5} strokeDasharray="3 3" />
+          <text x={S / 2 + 4} y={10} fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">HIGH AROUSAL</text>
+          <text x={S / 2 + 4} y={S - 3} fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">LOW AROUSAL</text>
+          <text x={3} y={S / 2 - 4} fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">NEG</text>
+          <text x={S - 20} y={S / 2 - 4} fill="#3a4e68" fontSize={7} fontFamily="JetBrains Mono">POS</text>
+          <line x1={cx} y1={0} x2={cx} y2={S} stroke={`${color}30`} strokeWidth={0.5} strokeDasharray="3 3" />
+          <line x1={0} y1={cy} x2={S} y2={cy} stroke={`${color}30`} strokeWidth={0.5} strokeDasharray="3 3" />
           <circle cx={cx} cy={cy} r={20} fill={`${color}08`} stroke={`${color}20`} strokeWidth={1} />
           <circle cx={cx} cy={cy} r={12} fill={`${color}15`} stroke={`${color}40`} strokeWidth={1} />
-          <circle cx={cx} cy={cy} r={5}  fill={color} style={{ filter: `drop-shadow(0 0 8px ${color})` }} />
+          <circle cx={cx} cy={cy} r={5} fill={color} style={{ filter: `drop-shadow(0 0 8px ${color})` }} />
         </svg>
       </div>
       <div className="mt-3 grid grid-cols-2 gap-2 text-center">
@@ -279,11 +282,11 @@ function Transcript({ words, progress }: { words: string[]; progress: number }) 
         {words.map((word, i) => (
           <span key={i} className="font-mono text-[12px] px-1 rounded-sm transition-all duration-100"
             style={{
-              color:      i === active ? "#00d4ff" : i < active ? "#c4d4e8" : "#2d3d55",
+              color: i === active ? "#00d4ff" : i < active ? "#c4d4e8" : "#2d3d55",
               fontWeight: i === active ? 700 : i < active ? 400 : 300,
               background: i === active ? "rgba(0,212,255,0.1)" : "transparent",
               textShadow: i === active ? "0 0 10px #00d4ff" : "none",
-              opacity:    i > active ? 0.5 : 1,
+              opacity: i > active ? 0.5 : 1,
             }}
           >{word}</span>
         ))}
@@ -325,7 +328,7 @@ const Dot = (props: { cx?: number; cy?: number; payload?: any }) => {
 };
 
 function LapChart({ data }: { data: LapPoint[] }) {
-  
+
   if (!data || data.length === 0) return <Panel><SectionLabel>Lap Performance</SectionLabel><div className="h-[200px] flex items-center justify-center text-xs text-[#5a6e8a]">No lap data</div></Panel>;
 
   return (
@@ -333,7 +336,7 @@ function LapChart({ data }: { data: LapPoint[] }) {
       <div className="flex items-center justify-between mb-3">
         <SectionLabel>Lap Performance · Δs by Lap</SectionLabel>
         <div className="flex gap-4">
-          {Object.entries(TYRE_COLORS).slice(0,3).map(([t, c]) => (
+          {Object.entries(TYRE_COLORS).slice(0, 3).map(([t, c]) => (
             <div key={t} className="flex items-center gap-1.5">
               <div className="w-2.5 h-2.5 rounded-full" style={{ background: c }} />
               <span className="font-mono text-[9px] text-[#5a6e8a]">{t}</span>
@@ -380,7 +383,7 @@ const Tip = ({ active, payload }: { active?: boolean; payload?: any }) => {
 };
 
 function CorrelationPlot({ summary }: { summary: CorrelationSummary | null }) {
-  
+
   if (!summary || !summary.points) return <Panel><SectionLabel>Stress Index ↔ Performance Correlation</SectionLabel><div className="h-[180px]" /></Panel>;
 
   return (
@@ -414,19 +417,21 @@ function CorrelationPlot({ summary }: { summary: CorrelationSummary | null }) {
 
 // ─── Upload Panel ─────────────────────────
 
-type UploadState = "idle" | "dragging" | "uploading" | "done";
+type UploadState = "idle" | "dragging" | "uploading" | "done" | "error";
 
 function UploadPanel({ onUploadComplete }: { onUploadComplete?: (result: ClipAnalysis) => void }) {
   const [state, setState] = useState<UploadState>("idle");
   const [fileName, setFileName] = useState("");
   const [pct, setPct] = useState(0);
   const [result, setResult] = useState<ClipAnalysis | null>(null);
+  const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const uploadFile = async (file: File) => {
     setFileName(file.name);
     setState("uploading");
     setPct(20);
+    setError("");
     try {
       const res = await analyzeAudio(file, { driver: "Custom", race: "Testing", lap: 1 });
       setPct(100);
@@ -434,8 +439,8 @@ function UploadPanel({ onUploadComplete }: { onUploadComplete?: (result: ClipAna
       setState("done");
       onUploadComplete?.(res);
     } catch (e) {
-      console.error(e);
-      setState("idle");
+      setError(e instanceof Error ? e.message : "Analysis failed. Please try another file.");
+      setState("error");
     }
   };
 
@@ -476,7 +481,7 @@ function UploadPanel({ onUploadComplete }: { onUploadComplete?: (result: ClipAna
           <button onClick={(e) => { e.stopPropagation(); inputRef.current?.click(); }} className="font-display text-[10px] tracking-[0.18em] uppercase px-5 py-2 rounded-sm border border-[#e8002d] text-[#e8002d] hover:bg-[#e8002d18] transition-colors">
             Browse Files
           </button>
-          <input ref={inputRef} type="file" accept="audio/*" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadFile(f); }} />
+          <input ref={inputRef} type="file" accept=".wav,.mp3,.m4a,.ogg,.flac,audio/wav,audio/mpeg,audio/mp4,audio/ogg,audio/flac" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadFile(f); e.currentTarget.value = ""; }} />
         </div>
       )}
       {state === "uploading" && (
@@ -509,6 +514,18 @@ function UploadPanel({ onUploadComplete }: { onUploadComplete?: (result: ClipAna
           </button>
         </div>
       )}
+      {state === "error" && (
+        <div className="flex flex-col gap-3 border border-[#e8002d40] bg-[#e8002d08] p-4">
+          <span className="font-mono text-[10px] font-bold tracking-wider text-[#e8002d]">Analysis Failed</span>
+          <p className="font-mono text-[10px] leading-relaxed text-[#8fa0b8]">{error}</p>
+          <button
+            onClick={() => { setState("idle"); setFileName(""); setPct(0); setError(""); }}
+            className="self-start border border-[#e8002d] px-3 py-1.5 font-mono text-[9px] uppercase tracking-widest text-[#e8002d]"
+          >
+            Try Another File
+          </button>
+        </div>
+      )}
     </Panel>
   );
 }
@@ -519,7 +536,7 @@ function Sidebar({ clips, selected, onSelect }: { clips: ClipSummary[]; selected
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const moods = useMemo(() => ["All", "STRESSED", "CALM", "TIRED", "UNKNOWN"], []);
-  
+
   const list = useMemo(() =>
     clips.filter((c) => {
       const ms = filter === "All" || c.mood_label === filter;
@@ -570,7 +587,7 @@ function Sidebar({ clips, selected, onSelect }: { clips: ClipSummary[]; selected
         {list.length === 0 ? (
           <div className="px-4 py-8 text-center font-mono text-[10px] text-[#2d3d55]">No clips match</div>
         ) : list.map((clip) => {
-          const color  = MOOD_COLORS[clip.mood_label] ?? "#5a6e8a";
+          const color = MOOD_COLORS[clip.mood_label] ?? "#5a6e8a";
           const active = clip.clip_id === selected;
           return (
             <button key={clip.clip_id} onClick={() => onSelect(clip.clip_id)} className="w-full text-left px-4 py-3.5 border-b border-[#0f1218] hover:bg-[#0d1120] transition-colors"
@@ -620,20 +637,40 @@ export default function Home() {
   const [activeClipId, setActiveClipId] = useState<string | null>(null);
   const [activeAnalysis, setActiveAnalysis] = useState<ClipAnalysis | null>(null);
   const [correlation, setCorrelation] = useState<CorrelationSummary | null>(null);
+  const [health, setHealth] = useState<HealthStatus | null>(null);
   const [audioProgress, setAudioProgress] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetchClips().then(data => {
-      setClips(data);
-      if (data.length > 0) setActiveClipId(data[0].clip_id);
-    });
-    fetchCorrelation().then(setCorrelation);
+    let cancelled = false;
+    Promise.all([fetchClips(), fetchCorrelation(), fetchHealth()])
+      .then(([data, correlationData, healthData]) => {
+        if (cancelled) return;
+        setClips(data);
+        setCorrelation(correlationData);
+        setHealth(healthData);
+        if (data.length > 0) setActiveClipId(data[0].clip_id);
+        else setError("No analyzed clips are available.");
+      })
+      .catch((reason) => {
+        if (!cancelled) setError(reason instanceof Error ? reason.message : "Unable to load the demo data.");
+      })
+      .finally(() => {
+        if (!cancelled) setLoading(false);
+      });
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
-    if (activeClipId && !activeClipId.startsWith("upload_")) {
-      fetchClip(activeClipId).then(setActiveAnalysis);
-    }
+    if (!activeClipId) return;
+    const uploadedAnalysis = activeClipId.startsWith("upload_") && activeAnalysis?.clip_id === activeClipId;
+    if (uploadedAnalysis) return;
+    fetchClip(activeClipId)
+      .then((analysis) => { setActiveAnalysis(analysis); setError(null); })
+      .catch((reason) => setError(reason instanceof Error ? reason.message : "Unable to load the selected clip."));
+    // Uploaded analyses are already held in state; dataset selections are fetched by id.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeClipId]);
 
   const activeSummary = clips.find(c => c.clip_id === activeClipId);
@@ -645,14 +682,23 @@ export default function Home() {
       clip_id: id, driver: res.driver, race: res.race, lap: res.lap,
       duration_s: res.prosody.duration_s, mood_label: res.mood.label,
       stress_index: res.mood.stress_index, delta_s: res.lap_context?.delta_s ?? null,
-      transcript_preview: res.transcript.substring(0,60), audio_url: res.audio_url
+      transcript_preview: res.transcript.substring(0, 60), audio_url: res.audio_url
     };
     setClips(p => [summary, ...p]);
     setActiveAnalysis(res);
     setActiveClipId(id);
   };
 
-  if (!activeSummary || !activeAnalysis) return <div className="h-screen bg-[#06080d] flex items-center justify-center text-[#5a6e8a] font-mono text-xs">Loading Pipeline...</div>;
+  if (error) return (
+    <div className="h-screen bg-[#06080d] flex items-center justify-center px-6 text-center font-mono">
+      <div className="max-w-md border border-[#e8002d40] bg-[#0b0f18] p-6">
+        <div className="mb-2 text-xs font-bold uppercase tracking-widest text-[#e8002d]">Demo Data Unavailable</div>
+        <p className="text-[11px] leading-relaxed text-[#8fa0b8]">{error}</p>
+        <button onClick={() => window.location.reload()} className="mt-4 border border-[#e8002d] px-4 py-2 text-[9px] uppercase tracking-widest text-[#e8002d]">Retry</button>
+      </div>
+    </div>
+  );
+  if (loading || !activeSummary || !activeAnalysis || activeAnalysis.clip_id !== activeClipId) return <div className="h-screen bg-[#06080d] flex items-center justify-center text-[#5a6e8a] font-mono text-xs">Loading Pipeline...</div>;
 
   const color = MOOD_COLORS[activeSummary.mood_label] ?? "#e8002d";
 
@@ -669,15 +715,17 @@ export default function Home() {
             ))}
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#00e676] animate-pulse" />
-            <span className="font-mono text-[9px] tracking-widest text-[#5a6e8a] uppercase">Live Analysis</span>
+            <div className={`w-1.5 h-1.5 rounded-full ${health?.mock_ml || activeAnalysis.mocked ? "bg-[#ff8c00]" : "bg-[#00e676] animate-pulse"}`} />
+            <span className="font-mono text-[9px] tracking-widest text-[#5a6e8a] uppercase">
+              {health?.mock_ml || activeAnalysis.mocked ? "Precomputed Fixture" : "Connected Analysis"}
+            </span>
           </div>
           <div className="flex-1 h-px bg-[#1c2638]" />
           <div className="flex gap-5">
             {[
               { label: "Driver", value: activeSummary.driver?.split(" ").slice(-1)[0].toUpperCase() || "UNKNOWN" },
-              { label: "Lap",    value: `LAP ${activeSummary.lap || "?"}` },
-              { label: "Mood",   value: activeSummary.mood_label, c: color },
+              { label: "Lap", value: `LAP ${activeSummary.lap || "?"}` },
+              { label: "Mood", value: activeSummary.mood_label, c: color },
             ].map(({ label, value, c }) => (
               <div key={label} className="text-right">
                 <div className="font-mono text-[12px] font-bold tabular-nums" style={{ color: c ?? "#dce6f5" }}>{value}</div>
@@ -691,7 +739,7 @@ export default function Home() {
         </header>
 
         <main className="flex-1 overflow-y-auto px-6 py-4 flex flex-col gap-4">
-          <AudioPlayer summary={activeSummary} analysis={activeAnalysis} onProgress={setAudioProgress} />
+          <AudioPlayer key={activeAnalysis.clip_id} summary={activeSummary} analysis={activeAnalysis} onProgress={setAudioProgress} />
           <div className="flex gap-4">
             <MoodCard summary={activeSummary} analysis={activeAnalysis} />
             <ArousalValence summary={activeSummary} analysis={activeAnalysis} />

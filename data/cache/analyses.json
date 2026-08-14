@@ -8,11 +8,31 @@
     "session_type": "R",
     "transcript": "Bono, my tyres are gone!",
     "words": [
-      { "word": "Bono,", "start": 0.12, "end": 0.58 },
-      { "word": "my", "start": 0.69, "end": 0.81 },
-      { "word": "tyres", "start": 0.84, "end": 1.22 },
-      { "word": "are", "start": 1.26, "end": 1.41 },
-      { "word": "gone!", "start": 1.44, "end": 2.05 }
+      {
+        "word": "Bono,",
+        "start": 0.12,
+        "end": 0.58
+      },
+      {
+        "word": "my",
+        "start": 0.69,
+        "end": 0.81
+      },
+      {
+        "word": "tyres",
+        "start": 0.84,
+        "end": 1.22
+      },
+      {
+        "word": "are",
+        "start": 1.26,
+        "end": 1.41
+      },
+      {
+        "word": "gone!",
+        "start": 1.44,
+        "end": 2.05
+      }
     ],
     "asr_model": "openai/whisper-small",
     "prosody": {
@@ -35,7 +55,11 @@
       "fatigue_index": 0.19,
       "quadrant": "HIGH_AROUSAL_NEGATIVE",
       "rationale": "High arousal (0.87) with negative valence (0.21) indicates acute stress.",
-      "contributing_factors": ["high_arousal", "negative_valence", "fast_speech"]
+      "contributing_factors": [
+        "high_arousal",
+        "negative_valence",
+        "fast_speech"
+      ]
     },
     "lap_context": {
       "lap_number": 52,
@@ -48,41 +72,83 @@
       "trend": "DEGRADING",
       "window": [
         {
-          "lap_number": 47, "lap_time_s": 89.501, "delta_s": 0.089,
-          "compound": "HARD", "stint": 2, "tyre_life": 19,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 47,
+          "lap_time_s": 89.501,
+          "delta_s": 0.089,
+          "compound": "HARD",
+          "stint": 2,
+          "tyre_life": 19,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 48, "lap_time_s": 89.612, "delta_s": 0.200,
-          "compound": "HARD", "stint": 2, "tyre_life": 20,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 48,
+          "lap_time_s": 89.612,
+          "delta_s": 0.2,
+          "compound": "HARD",
+          "stint": 2,
+          "tyre_life": 20,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 49, "lap_time_s": 89.795, "delta_s": 0.383,
-          "compound": "HARD", "stint": 2, "tyre_life": 21,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 49,
+          "lap_time_s": 89.795,
+          "delta_s": 0.383,
+          "compound": "HARD",
+          "stint": 2,
+          "tyre_life": 21,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 50, "lap_time_s": 89.512, "delta_s": 0.100,
-          "compound": "HARD", "stint": 2, "tyre_life": 22,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 50,
+          "lap_time_s": 89.512,
+          "delta_s": 0.1,
+          "compound": "HARD",
+          "stint": 2,
+          "tyre_life": 22,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 51, "lap_time_s": 89.533, "delta_s": 0.121,
-          "compound": "HARD", "stint": 2, "tyre_life": 23,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 51,
+          "lap_time_s": 89.533,
+          "delta_s": 0.121,
+          "compound": "HARD",
+          "stint": 2,
+          "tyre_life": 23,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 52, "lap_time_s": 90.633, "delta_s": 1.221,
-          "compound": "HARD", "stint": 2, "tyre_life": 24,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": true
+          "lap_number": 52,
+          "lap_time_s": 90.633,
+          "delta_s": 1.221,
+          "compound": "HARD",
+          "stint": 2,
+          "tyre_life": 24,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": true
         }
       ]
     },
     "audio_url": "/api/audio/ham_silverstone_2021_l52",
     "processed_at": "2026-08-13T14:22:01Z",
     "processing_ms": 1840,
-    "mocked": false
+    "mocked": true
   },
   {
     "clip_id": "rai_abu_dhabi_2018_l53",
@@ -93,14 +159,46 @@
     "session_type": "R",
     "transcript": "Leave me alone, I know what I'm doing.",
     "words": [
-      { "word": "Leave", "start": 0.10, "end": 0.42 },
-      { "word": "me", "start": 0.45, "end": 0.55 },
-      { "word": "alone,", "start": 0.58, "end": 0.98 },
-      { "word": "I", "start": 1.10, "end": 1.15 },
-      { "word": "know", "start": 1.18, "end": 1.45 },
-      { "word": "what", "start": 1.48, "end": 1.70 },
-      { "word": "I'm", "start": 1.72, "end": 1.88 },
-      { "word": "doing.", "start": 1.90, "end": 2.30 }
+      {
+        "word": "Leave",
+        "start": 0.1,
+        "end": 0.42
+      },
+      {
+        "word": "me",
+        "start": 0.45,
+        "end": 0.55
+      },
+      {
+        "word": "alone,",
+        "start": 0.58,
+        "end": 0.98
+      },
+      {
+        "word": "I",
+        "start": 1.1,
+        "end": 1.15
+      },
+      {
+        "word": "know",
+        "start": 1.18,
+        "end": 1.45
+      },
+      {
+        "word": "what",
+        "start": 1.48,
+        "end": 1.7
+      },
+      {
+        "word": "I'm",
+        "start": 1.72,
+        "end": 1.88
+      },
+      {
+        "word": "doing.",
+        "start": 1.9,
+        "end": 2.3
+      }
     ],
     "asr_model": "openai/whisper-small",
     "prosody": {
@@ -113,14 +211,14 @@
       "longest_pause_s": 0.15,
       "rms_energy": 0.38,
       "pitch_hz": 142.0,
-      "duration_s": 3.10,
+      "duration_s": 3.1,
       "word_count": 8
     },
     "mood": {
       "label": "CALM",
       "confidence": 0.72,
       "stress_index": 0.22,
-      "fatigue_index": 0.00,
+      "fatigue_index": 0.0,
       "quadrant": "LOW_AROUSAL_POSITIVE",
       "rationale": "Low arousal (0.42) with positive valence (0.61) indicates a calm state.",
       "contributing_factors": []
@@ -128,44 +226,79 @@
     "lap_context": {
       "lap_number": 53,
       "lap_time_s": 100.283,
-      "baseline_s": 100.320,
+      "baseline_s": 100.32,
       "delta_s": -0.037,
-      "next_lap_delta_s": -0.060,
+      "next_lap_delta_s": -0.06,
       "prev_lap_delta_s": 0.041,
       "compound": "MEDIUM",
       "trend": "IMPROVING",
       "window": [
         {
-          "lap_number": 50, "lap_time_s": 100.361, "delta_s": 0.041,
-          "compound": "MEDIUM", "stint": 3, "tyre_life": 3,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 50,
+          "lap_time_s": 100.361,
+          "delta_s": 0.041,
+          "compound": "MEDIUM",
+          "stint": 3,
+          "tyre_life": 3,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 51, "lap_time_s": 100.298, "delta_s": -0.022,
-          "compound": "MEDIUM", "stint": 3, "tyre_life": 4,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 51,
+          "lap_time_s": 100.298,
+          "delta_s": -0.022,
+          "compound": "MEDIUM",
+          "stint": 3,
+          "tyre_life": 4,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 52, "lap_time_s": 100.340, "delta_s": 0.020,
-          "compound": "MEDIUM", "stint": 3, "tyre_life": 5,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 52,
+          "lap_time_s": 100.34,
+          "delta_s": 0.02,
+          "compound": "MEDIUM",
+          "stint": 3,
+          "tyre_life": 5,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 53, "lap_time_s": 100.283, "delta_s": -0.037,
-          "compound": "MEDIUM", "stint": 3, "tyre_life": 6,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": true
+          "lap_number": 53,
+          "lap_time_s": 100.283,
+          "delta_s": -0.037,
+          "compound": "MEDIUM",
+          "stint": 3,
+          "tyre_life": 6,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": true
         },
         {
-          "lap_number": 54, "lap_time_s": 100.260, "delta_s": -0.060,
-          "compound": "MEDIUM", "stint": 3, "tyre_life": 7,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 54,
+          "lap_time_s": 100.26,
+          "delta_s": -0.06,
+          "compound": "MEDIUM",
+          "stint": 3,
+          "tyre_life": 7,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         }
       ]
     },
     "audio_url": "/api/audio/rai_abu_dhabi_2018_l53",
     "processed_at": "2026-08-13T14:23:15Z",
     "processing_ms": 1220,
-    "mocked": false
+    "mocked": true
   },
   {
     "clip_id": "vet_germany_2018_l52",
@@ -176,16 +309,56 @@
     "session_type": "R",
     "transcript": "Yeah... I don't know... something feels off with the car.",
     "words": [
-      { "word": "Yeah...", "start": 0.20, "end": 0.80 },
-      { "word": "I", "start": 1.30, "end": 1.38 },
-      { "word": "don't", "start": 1.42, "end": 1.70 },
-      { "word": "know...", "start": 1.74, "end": 2.40 },
-      { "word": "something", "start": 3.10, "end": 3.62 },
-      { "word": "feels", "start": 3.66, "end": 3.92 },
-      { "word": "off", "start": 3.95, "end": 4.18 },
-      { "word": "with", "start": 4.22, "end": 4.40 },
-      { "word": "the", "start": 4.42, "end": 4.52 },
-      { "word": "car.", "start": 4.55, "end": 5.10 }
+      {
+        "word": "Yeah...",
+        "start": 0.2,
+        "end": 0.8
+      },
+      {
+        "word": "I",
+        "start": 1.3,
+        "end": 1.38
+      },
+      {
+        "word": "don't",
+        "start": 1.42,
+        "end": 1.7
+      },
+      {
+        "word": "know...",
+        "start": 1.74,
+        "end": 2.4
+      },
+      {
+        "word": "something",
+        "start": 3.1,
+        "end": 3.62
+      },
+      {
+        "word": "feels",
+        "start": 3.66,
+        "end": 3.92
+      },
+      {
+        "word": "off",
+        "start": 3.95,
+        "end": 4.18
+      },
+      {
+        "word": "with",
+        "start": 4.22,
+        "end": 4.4
+      },
+      {
+        "word": "the",
+        "start": 4.42,
+        "end": 4.52
+      },
+      {
+        "word": "car.",
+        "start": 4.55,
+        "end": 5.1
+      }
     ],
     "asr_model": "openai/whisper-small",
     "prosody": {
@@ -198,54 +371,87 @@
       "longest_pause_s": 0.72,
       "rms_energy": 0.29,
       "pitch_hz": 118.0,
-      "duration_s": 7.20,
+      "duration_s": 7.2,
       "word_count": 10
     },
     "mood": {
       "label": "TIRED",
-      "confidence": 0.80,
+      "confidence": 0.8,
       "stress_index": 0.21,
-      "fatigue_index": 1.00,
+      "fatigue_index": 1.0,
       "quadrant": "LOW_AROUSAL_NEGATIVE",
       "rationale": "Low arousal (0.28) with negative valence (0.32). Speech rate 1.8 w/s suggests fatigue.",
-      "contributing_factors": ["low_arousal", "negative_valence", "slow_speech", "long_pauses"]
+      "contributing_factors": [
+        "low_arousal",
+        "negative_valence",
+        "slow_speech",
+        "long_pauses"
+      ]
     },
     "lap_context": {
       "lap_number": 52,
       "lap_time_s": 96.881,
-      "baseline_s": 91.420,
+      "baseline_s": 91.42,
       "delta_s": 5.461,
       "next_lap_delta_s": null,
-      "prev_lap_delta_s": 2.350,
+      "prev_lap_delta_s": 2.35,
       "compound": "SOFT",
       "trend": "DEGRADING",
       "window": [
         {
-          "lap_number": 49, "lap_time_s": 92.210, "delta_s": 0.790,
-          "compound": "SOFT", "stint": 3, "tyre_life": 8,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 49,
+          "lap_time_s": 92.21,
+          "delta_s": 0.79,
+          "compound": "SOFT",
+          "stint": 3,
+          "tyre_life": 8,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 50, "lap_time_s": 93.120, "delta_s": 1.700,
-          "compound": "SOFT", "stint": 3, "tyre_life": 9,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 50,
+          "lap_time_s": 93.12,
+          "delta_s": 1.7,
+          "compound": "SOFT",
+          "stint": 3,
+          "tyre_life": 9,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 51, "lap_time_s": 93.770, "delta_s": 2.350,
-          "compound": "SOFT", "stint": 3, "tyre_life": 10,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 51,
+          "lap_time_s": 93.77,
+          "delta_s": 2.35,
+          "compound": "SOFT",
+          "stint": 3,
+          "tyre_life": 10,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 52, "lap_time_s": 96.881, "delta_s": 5.461,
-          "compound": "SOFT", "stint": 3, "tyre_life": 11,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": true
+          "lap_number": 52,
+          "lap_time_s": 96.881,
+          "delta_s": 5.461,
+          "compound": "SOFT",
+          "stint": 3,
+          "tyre_life": 11,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": true
         }
       ]
     },
     "audio_url": "/api/audio/vet_germany_2018_l52",
     "processed_at": "2026-08-13T14:24:42Z",
     "processing_ms": 1650,
-    "mocked": false
+    "mocked": true
   },
   {
     "clip_id": "upload_mock_001",
@@ -256,46 +462,92 @@
     "session_type": null,
     "transcript": "I think we should box now, the rears are completely gone.",
     "words": [
-      { "word": "I", "start": 0.05, "end": 0.12 },
-      { "word": "think", "start": 0.15, "end": 0.40 },
-      { "word": "we", "start": 0.42, "end": 0.52 },
-      { "word": "should", "start": 0.55, "end": 0.82 },
-      { "word": "box", "start": 0.85, "end": 1.10 },
-      { "word": "now,", "start": 1.12, "end": 1.45 },
-      { "word": "the", "start": 1.58, "end": 1.65 },
-      { "word": "rears", "start": 1.68, "end": 2.00 },
-      { "word": "are", "start": 2.02, "end": 2.15 },
-      { "word": "completely", "start": 2.18, "end": 2.72 },
-      { "word": "gone.", "start": 2.75, "end": 3.20 }
+      {
+        "word": "I",
+        "start": 0.05,
+        "end": 0.12
+      },
+      {
+        "word": "think",
+        "start": 0.15,
+        "end": 0.4
+      },
+      {
+        "word": "we",
+        "start": 0.42,
+        "end": 0.52
+      },
+      {
+        "word": "should",
+        "start": 0.55,
+        "end": 0.82
+      },
+      {
+        "word": "box",
+        "start": 0.85,
+        "end": 1.1
+      },
+      {
+        "word": "now,",
+        "start": 1.12,
+        "end": 1.45
+      },
+      {
+        "word": "the",
+        "start": 1.58,
+        "end": 1.65
+      },
+      {
+        "word": "rears",
+        "start": 1.68,
+        "end": 2.0
+      },
+      {
+        "word": "are",
+        "start": 2.02,
+        "end": 2.15
+      },
+      {
+        "word": "completely",
+        "start": 2.18,
+        "end": 2.72
+      },
+      {
+        "word": "gone.",
+        "start": 2.75,
+        "end": 3.2
+      }
     ],
     "asr_model": "openai/whisper-small",
     "prosody": {
       "arousal": 0.55,
       "dominance": 0.48,
-      "valence": 0.30,
+      "valence": 0.3,
       "speech_rate_wps": 3.21,
       "pause_ratio": 0.14,
       "mean_pause_s": 0.13,
       "longest_pause_s": 0.13,
       "rms_energy": 0.52,
       "pitch_hz": null,
-      "duration_s": 4.10,
+      "duration_s": 4.1,
       "word_count": 11
     },
     "mood": {
       "label": "UNKNOWN",
       "confidence": 0.0,
       "stress_index": 0.39,
-      "fatigue_index": 0.00,
+      "fatigue_index": 0.0,
       "quadrant": "HIGH_AROUSAL_NEGATIVE",
       "rationale": "Insufficient audio data for reliable classification.",
-      "contributing_factors": ["negative_valence"]
+      "contributing_factors": [
+        "negative_valence"
+      ]
     },
     "lap_context": null,
     "audio_url": "/api/audio/upload_mock_001",
     "processed_at": "2026-08-13T14:25:10Z",
     "processing_ms": 2100,
-    "mocked": false
+    "mocked": true
   },
   {
     "clip_id": "ham_hungary_2021_l45",
@@ -306,43 +558,191 @@
     "session_type": "R",
     "transcript": "Copy that. Okay so the plan is to stay out and see what happens with the safety car. I'm comfortable, tyres feel alright, let's just make sure we cover Verstappen on the in-lap if he boxes first.",
     "words": [
-      { "word": "Copy", "start": 0.10, "end": 0.38 },
-      { "word": "that.", "start": 0.40, "end": 0.72 },
-      { "word": "Okay", "start": 0.90, "end": 1.20 },
-      { "word": "so", "start": 1.22, "end": 1.35 },
-      { "word": "the", "start": 1.38, "end": 1.48 },
-      { "word": "plan", "start": 1.50, "end": 1.80 },
-      { "word": "is", "start": 1.82, "end": 1.95 },
-      { "word": "to", "start": 1.97, "end": 2.05 },
-      { "word": "stay", "start": 2.08, "end": 2.35 },
-      { "word": "out", "start": 2.38, "end": 2.58 },
-      { "word": "and", "start": 2.60, "end": 2.72 },
-      { "word": "see", "start": 2.74, "end": 2.92 },
-      { "word": "what", "start": 2.95, "end": 3.12 },
-      { "word": "happens", "start": 3.14, "end": 3.55 },
-      { "word": "with", "start": 3.58, "end": 3.72 },
-      { "word": "the", "start": 3.74, "end": 3.82 },
-      { "word": "safety", "start": 3.84, "end": 4.20 },
-      { "word": "car.", "start": 4.22, "end": 4.60 },
-      { "word": "I'm", "start": 4.80, "end": 4.95 },
-      { "word": "comfortable,", "start": 4.98, "end": 5.48 },
-      { "word": "tyres", "start": 5.52, "end": 5.82 },
-      { "word": "feel", "start": 5.84, "end": 6.08 },
-      { "word": "alright,", "start": 6.10, "end": 6.52 },
-      { "word": "let's", "start": 6.72, "end": 6.98 },
-      { "word": "just", "start": 7.00, "end": 7.18 },
-      { "word": "make", "start": 7.20, "end": 7.42 },
-      { "word": "sure", "start": 7.44, "end": 7.70 },
-      { "word": "we", "start": 7.72, "end": 7.82 },
-      { "word": "cover", "start": 7.84, "end": 8.18 },
-      { "word": "Verstappen", "start": 8.20, "end": 8.72 },
-      { "word": "on", "start": 8.74, "end": 8.85 },
-      { "word": "the", "start": 8.87, "end": 8.95 },
-      { "word": "in-lap", "start": 8.97, "end": 9.38 },
-      { "word": "if", "start": 9.40, "end": 9.50 },
-      { "word": "he", "start": 9.52, "end": 9.60 },
-      { "word": "boxes", "start": 9.62, "end": 9.95 },
-      { "word": "first.", "start": 9.97, "end": 10.42 }
+      {
+        "word": "Copy",
+        "start": 0.1,
+        "end": 0.38
+      },
+      {
+        "word": "that.",
+        "start": 0.4,
+        "end": 0.72
+      },
+      {
+        "word": "Okay",
+        "start": 0.9,
+        "end": 1.2
+      },
+      {
+        "word": "so",
+        "start": 1.22,
+        "end": 1.35
+      },
+      {
+        "word": "the",
+        "start": 1.38,
+        "end": 1.48
+      },
+      {
+        "word": "plan",
+        "start": 1.5,
+        "end": 1.8
+      },
+      {
+        "word": "is",
+        "start": 1.82,
+        "end": 1.95
+      },
+      {
+        "word": "to",
+        "start": 1.97,
+        "end": 2.05
+      },
+      {
+        "word": "stay",
+        "start": 2.08,
+        "end": 2.35
+      },
+      {
+        "word": "out",
+        "start": 2.38,
+        "end": 2.58
+      },
+      {
+        "word": "and",
+        "start": 2.6,
+        "end": 2.72
+      },
+      {
+        "word": "see",
+        "start": 2.74,
+        "end": 2.92
+      },
+      {
+        "word": "what",
+        "start": 2.95,
+        "end": 3.12
+      },
+      {
+        "word": "happens",
+        "start": 3.14,
+        "end": 3.55
+      },
+      {
+        "word": "with",
+        "start": 3.58,
+        "end": 3.72
+      },
+      {
+        "word": "the",
+        "start": 3.74,
+        "end": 3.82
+      },
+      {
+        "word": "safety",
+        "start": 3.84,
+        "end": 4.2
+      },
+      {
+        "word": "car.",
+        "start": 4.22,
+        "end": 4.6
+      },
+      {
+        "word": "I'm",
+        "start": 4.8,
+        "end": 4.95
+      },
+      {
+        "word": "comfortable,",
+        "start": 4.98,
+        "end": 5.48
+      },
+      {
+        "word": "tyres",
+        "start": 5.52,
+        "end": 5.82
+      },
+      {
+        "word": "feel",
+        "start": 5.84,
+        "end": 6.08
+      },
+      {
+        "word": "alright,",
+        "start": 6.1,
+        "end": 6.52
+      },
+      {
+        "word": "let's",
+        "start": 6.72,
+        "end": 6.98
+      },
+      {
+        "word": "just",
+        "start": 7.0,
+        "end": 7.18
+      },
+      {
+        "word": "make",
+        "start": 7.2,
+        "end": 7.42
+      },
+      {
+        "word": "sure",
+        "start": 7.44,
+        "end": 7.7
+      },
+      {
+        "word": "we",
+        "start": 7.72,
+        "end": 7.82
+      },
+      {
+        "word": "cover",
+        "start": 7.84,
+        "end": 8.18
+      },
+      {
+        "word": "Verstappen",
+        "start": 8.2,
+        "end": 8.72
+      },
+      {
+        "word": "on",
+        "start": 8.74,
+        "end": 8.85
+      },
+      {
+        "word": "the",
+        "start": 8.87,
+        "end": 8.95
+      },
+      {
+        "word": "in-lap",
+        "start": 8.97,
+        "end": 9.38
+      },
+      {
+        "word": "if",
+        "start": 9.4,
+        "end": 9.5
+      },
+      {
+        "word": "he",
+        "start": 9.52,
+        "end": 9.6
+      },
+      {
+        "word": "boxes",
+        "start": 9.62,
+        "end": 9.95
+      },
+      {
+        "word": "first.",
+        "start": 9.97,
+        "end": 10.42
+      }
     ],
     "asr_model": "openai/whisper-small",
     "prosody": {
@@ -351,18 +751,18 @@
       "valence": 0.55,
       "speech_rate_wps": 3.35,
       "pause_ratio": 0.16,
-      "mean_pause_s": 0.10,
-      "longest_pause_s": 0.20,
+      "mean_pause_s": 0.1,
+      "longest_pause_s": 0.2,
       "rms_energy": 0.56,
       "pitch_hz": null,
-      "duration_s": 11.80,
+      "duration_s": 11.8,
       "word_count": 37
     },
     "mood": {
       "label": "STRESSED",
       "confidence": 0.67,
-      "stress_index": 0.60,
-      "fatigue_index": 0.00,
+      "stress_index": 0.6,
+      "fatigue_index": 0.0,
       "quadrant": "HIGH_AROUSAL_POSITIVE",
       "rationale": "High arousal (0.61) with positive valence (0.55) indicates a calm state.",
       "contributing_factors": []
@@ -372,41 +772,140 @@
       "lap_time_s": 88.951,
       "baseline_s": 87.812,
       "delta_s": 1.139,
-      "next_lap_delta_s": 0.620,
+      "next_lap_delta_s": 0.62,
       "prev_lap_delta_s": 0.843,
       "compound": "MEDIUM",
       "trend": "IMPROVING",
       "window": [
         {
-          "lap_number": 42, "lap_time_s": 88.655, "delta_s": 0.843,
-          "compound": "MEDIUM", "stint": 2, "tyre_life": 12,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 42,
+          "lap_time_s": 88.655,
+          "delta_s": 0.843,
+          "compound": "MEDIUM",
+          "stint": 2,
+          "tyre_life": 12,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 43, "lap_time_s": 88.820, "delta_s": 1.008,
-          "compound": "MEDIUM", "stint": 2, "tyre_life": 13,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 43,
+          "lap_time_s": 88.82,
+          "delta_s": 1.008,
+          "compound": "MEDIUM",
+          "stint": 2,
+          "tyre_life": 13,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 44, "lap_time_s": 88.655, "delta_s": 0.843,
-          "compound": "MEDIUM", "stint": 2, "tyre_life": 14,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 44,
+          "lap_time_s": 88.655,
+          "delta_s": 0.843,
+          "compound": "MEDIUM",
+          "stint": 2,
+          "tyre_life": 14,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         },
         {
-          "lap_number": 45, "lap_time_s": 88.951, "delta_s": 1.139,
-          "compound": "MEDIUM", "stint": 2, "tyre_life": 15,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": true
+          "lap_number": 45,
+          "lap_time_s": 88.951,
+          "delta_s": 1.139,
+          "compound": "MEDIUM",
+          "stint": 2,
+          "tyre_life": 15,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": true
         },
         {
-          "lap_number": 46, "lap_time_s": 88.432, "delta_s": 0.620,
-          "compound": "MEDIUM", "stint": 2, "tyre_life": 16,
-          "is_pit_lap": false, "is_accurate": true, "track_status": "1", "is_radio_lap": false
+          "lap_number": 46,
+          "lap_time_s": 88.432,
+          "delta_s": 0.62,
+          "compound": "MEDIUM",
+          "stint": 2,
+          "tyre_life": 16,
+          "is_pit_lap": false,
+          "is_accurate": true,
+          "track_status": "1",
+          "is_radio_lap": false
         }
       ]
     },
     "audio_url": "/api/audio/ham_hungary_2021_l45",
     "processed_at": "2026-08-13T14:26:55Z",
     "processing_ms": 3100,
-    "mocked": false
+    "mocked": true
+  },
+  {
+    "transcript": "Mock transcript for testing purposes.",
+    "words": [
+      {
+        "word": "Mock",
+        "start": 0.0,
+        "end": 0.3
+      },
+      {
+        "word": "transcript",
+        "start": 0.4,
+        "end": 0.8
+      },
+      {
+        "word": "for",
+        "start": 0.9,
+        "end": 1.0
+      },
+      {
+        "word": "testing",
+        "start": 1.1,
+        "end": 1.4
+      },
+      {
+        "word": "purposes.",
+        "start": 1.5,
+        "end": 2.0
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.65,
+      "dominance": 0.5,
+      "valence": 0.4,
+      "speech_rate_wps": 2.5,
+      "pause_ratio": 0.2,
+      "mean_pause_s": 0.15,
+      "longest_pause_s": 0.15,
+      "rms_energy": 0.45,
+      "pitch_hz": 180.0,
+      "duration_s": 2.0,
+      "word_count": 5
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.61,
+      "stress_index": 0.39,
+      "fatigue_index": 0.0,
+      "quadrant": "HIGH_AROUSAL_NEGATIVE",
+      "rationale": "High arousal (0.65) with negative valence (0.40) indicates mild tension.",
+      "contributing_factors": []
+    },
+    "processing_ms": 0,
+    "mocked": true,
+    "clip_id": "upload_f131aece",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_f131aece",
+    "processed_at": "2026-08-14T14:56:19Z",
+    "lap_context": null
   }
 ]

@@ -19,6 +19,14 @@ logger = logging.getLogger(__name__)
 _cache: Optional[dict] = None
 
 
+def _audio_exists(clip_id: str) -> bool:
+    """Return whether a cached clip has a corresponding playable file."""
+    clips_dir = settings.resolve_path(settings.CLIPS_DIR)
+    uploads_dir = settings.resolve_path(settings.UPLOADS_DIR)
+    extensions = (".wav", ".mp3", ".m4a", ".ogg", ".flac")
+    return any((directory / f"{clip_id}{ext}").is_file() for directory in (clips_dir, uploads_dir) for ext in extensions)
+
+
 def load_cache() -> dict:
     """Load the analyses.json file into memory. Returns dict keyed by clip_id."""
     cache_path = settings.resolve_path(settings.CACHE_FILE)
@@ -37,6 +45,11 @@ def get_cache() -> dict:
     if _cache is None:
         _cache = load_cache()
     return _cache
+
+
+def get_available_cache() -> dict:
+    """Return analyses that can be demonstrated with their matching audio."""
+    return {clip_id: analysis for clip_id, analysis in get_cache().items() if _audio_exists(clip_id)}
 
 
 def add_to_cache(clip_id: str, analysis: dict) -> None:

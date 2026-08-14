@@ -1,7 +1,7 @@
 """
 Correlation Service — Compute Pearson correlation between stress index and lap-time delta.
 
-This is our headline finding: stress predicts lap-time loss.
+This summarizes the observed relationship between stress and lap-time delta.
 See AGENTS.md §10 for the full explanation.
 
 Lane: B
@@ -19,7 +19,7 @@ def compute_correlation() -> dict:
     Collects all clips from cache that have both stress_index and delta_s,
     then computes Pearson r.
     """
-    from app.services.cache_service import get_cache
+    from app.services.cache_service import get_available_cache
 
     try:
         import numpy as np
@@ -28,7 +28,7 @@ def compute_correlation() -> dict:
         logger.warning("numpy/scipy not available — returning empty correlation.")
         return _empty_correlation()
 
-    cache = get_cache()
+    cache = get_available_cache()
 
     points = []
     for clip_id, analysis in cache.items():
@@ -90,16 +90,17 @@ def compute_correlation() -> dict:
         by_mood.setdefault(label, []).append(p_item["delta_s"])
     mean_delta_by_mood = {k: round(float(np.mean(v)), 3) for k, v in by_mood.items()}
 
-    # Headline
+    # Headline. Describe the observed sample without implying statistical
+    # significance or causation when the data does not support either claim.
     p_str = f"p = {p_val:.4f}" if p_val >= 0.001 else "p < 0.001"
-    stressed_delta = mean_delta_by_mood.get("STRESSED", 0)
-    sign = "+" if stressed_delta > 0 else ""
-    headline = (
-        f"Across {n} radio messages, stress index correlates with lap-time loss "
-        f"at r = {r:.2f} ({p_str}). "
-        f"Messages flagged STRESSED averaged {sign}{stressed_delta:.2f}s "
-        f"versus the driver's clean-lap baseline."
-    )
+    direction = "positive" if r > 0 else "negative" if r < 0 else "no"
+    headline = f"Across {n} radio messages, the observed stress/lap-delta correlation is {direction} at r = {r:.2f} ({p_str})."
+    stressed_delta = mean_delta_by_mood.get("STRESSED")
+    if stressed_delta is not None:
+        sign = "+" if stressed_delta > 0 else ""
+        headline += f" Messages flagged STRESSED averaged {sign}{stressed_delta:.2f}s versus the driver's clean-lap baseline."
+    if p_val >= 0.05:
+        headline += " This small sample is not statistically significant and should not be treated as predictive."
 
     return {
         "n": n,

@@ -8,7 +8,7 @@ Lane: B
 """
 
 from fastapi import APIRouter, Query, HTTPException
-from app.services.cache_service import get_cache
+from app.services.cache_service import get_available_cache
 from app.schemas import ClipSummary, ClipAnalysis
 
 router = APIRouter()
@@ -31,7 +31,7 @@ async def list_clips(
             },
         )
 
-    cache = get_cache()
+    cache = get_available_cache()
     results = []
     for clip_id, analysis in cache.items():
         # Apply filters
@@ -68,7 +68,7 @@ async def list_clips(
 @router.get("/clips/{clip_id}", response_model=ClipAnalysis)
 async def get_clip(clip_id: str):
     """Return full analysis for a single clip."""
-    cache = get_cache()
+    cache = get_available_cache()
     if clip_id not in cache:
         raise HTTPException(
             status_code=404,

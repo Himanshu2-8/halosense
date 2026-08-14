@@ -78,6 +78,11 @@ _processor = None
 _model = None
 
 
+def models_loaded() -> bool:
+    """Report whether the emotion processor and model are initialized."""
+    return _processor is not None and _model is not None
+
+
 def _load_model(device: str):
     """Load the audeering model and processor once."""
     global _processor, _model

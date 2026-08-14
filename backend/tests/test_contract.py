@@ -12,7 +12,6 @@ See CONTRACT.md §8 for what is tested.
 """
 
 import json
-import math
 import sys
 from pathlib import Path
 
@@ -105,6 +104,17 @@ class TestContract:
             assert url.startswith("/api/audio/"), f"{cid}: Bad audio_url format: {url}"
             url_clip_id = url.split("/")[-1]
             assert url_clip_id == cid, f"{cid}: audio_url clip_id mismatch: {url_clip_id}"
+
+    def test_dataset_clips_have_matching_audio(self):
+        """Every committed dataset analysis must have audio for a fresh-clone demo."""
+        data = load_cache()
+        clips_dir = PROJECT_ROOT / "data" / "clips"
+        for item in data:
+            if item.get("source") != "DATASET":
+                continue
+            audio_path = clips_dir / f"{item['clip_id']}.wav"
+            assert audio_path.is_file(), f"{item['clip_id']}: missing dataset audio: {audio_path}"
+            assert audio_path.stat().st_size > 44, f"{item['clip_id']}: WAV contains no audio frames"
 
     def test_words_are_valid(self):
         """Word timings must have valid start/end values."""

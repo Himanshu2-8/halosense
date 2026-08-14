@@ -16,6 +16,11 @@ logger = logging.getLogger(__name__)
 _pipe = None
 
 
+def models_loaded() -> bool:
+    """Report whether Whisper has been initialized in this process."""
+    return _pipe is not None
+
+
 def _get_pipeline(device: str):
     """Load the Whisper pipeline once and cache it."""
     global _pipe
