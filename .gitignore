@@ -108,3 +108,10 @@ desktop.ini
 #   docs/*.md               — planning docs (see note in GIT_WORKFLOW.md
 #                             about untracking these after the hackathon)
 # ─────────────────────────────────────────────────────────────
+
+# Planning docs
+docs/
+*.md
+!README.md
+*.txt
+*.docx
