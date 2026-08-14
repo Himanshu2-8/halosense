@@ -1,459 +1,5 @@
 [
   {
-    "clip_id": "ham_silverstone_2021_l52",
-    "source": "DATASET",
-    "driver": "HAM",
-    "race": "Silverstone 2021",
-    "lap": 52,
-    "session_type": "R",
-    "transcript": "Bono, my tyres are gone!",
-    "words": [
-      {
-        "word": "Bono,",
-        "start": 0.12,
-        "end": 0.58
-      },
-      {
-        "word": "my",
-        "start": 0.69,
-        "end": 0.81
-      },
-      {
-        "word": "tyres",
-        "start": 0.84,
-        "end": 1.22
-      },
-      {
-        "word": "are",
-        "start": 1.26,
-        "end": 1.41
-      },
-      {
-        "word": "gone!",
-        "start": 1.44,
-        "end": 2.05
-      }
-    ],
-    "asr_model": "openai/whisper-small",
-    "prosody": {
-      "arousal": 0.87,
-      "dominance": 0.64,
-      "valence": 0.21,
-      "speech_rate_wps": 3.94,
-      "pause_ratio": 0.08,
-      "mean_pause_s": 0.11,
-      "longest_pause_s": 0.34,
-      "rms_energy": 0.71,
-      "pitch_hz": 198.4,
-      "duration_s": 4.32,
-      "word_count": 5
-    },
-    "mood": {
-      "label": "STRESSED",
-      "confidence": 0.81,
-      "stress_index": 0.84,
-      "fatigue_index": 0.19,
-      "quadrant": "HIGH_AROUSAL_NEGATIVE",
-      "rationale": "High arousal (0.87) with negative valence (0.21) indicates acute stress.",
-      "contributing_factors": [
-        "high_arousal",
-        "negative_valence",
-        "fast_speech"
-      ]
-    },
-    "lap_context": {
-      "lap_number": 52,
-      "lap_time_s": 90.633,
-      "baseline_s": 89.412,
-      "delta_s": 1.221,
-      "next_lap_delta_s": 1.884,
-      "prev_lap_delta_s": 0.1,
-      "compound": "HARD",
-      "trend": "DEGRADING",
-      "window": [
-        {
-          "lap_number": 47,
-          "lap_time_s": 89.501,
-          "delta_s": 0.089,
-          "compound": "HARD",
-          "stint": 2,
-          "tyre_life": 19,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 48,
-          "lap_time_s": 89.612,
-          "delta_s": 0.2,
-          "compound": "HARD",
-          "stint": 2,
-          "tyre_life": 20,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 49,
-          "lap_time_s": 89.795,
-          "delta_s": 0.383,
-          "compound": "HARD",
-          "stint": 2,
-          "tyre_life": 21,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 50,
-          "lap_time_s": 89.512,
-          "delta_s": 0.1,
-          "compound": "HARD",
-          "stint": 2,
-          "tyre_life": 22,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 51,
-          "lap_time_s": 89.533,
-          "delta_s": 0.121,
-          "compound": "HARD",
-          "stint": 2,
-          "tyre_life": 23,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 52,
-          "lap_time_s": 90.633,
-          "delta_s": 1.221,
-          "compound": "HARD",
-          "stint": 2,
-          "tyre_life": 24,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": true
-        }
-      ]
-    },
-    "audio_url": "/api/audio/ham_silverstone_2021_l52",
-    "processed_at": "2026-08-13T14:22:01Z",
-    "processing_ms": 1840,
-    "mocked": true
-  },
-  {
-    "clip_id": "rai_abu_dhabi_2018_l53",
-    "source": "DATASET",
-    "driver": "RAI",
-    "race": "Abu Dhabi 2018",
-    "lap": 53,
-    "session_type": "R",
-    "transcript": "Leave me alone, I know what I'm doing.",
-    "words": [
-      {
-        "word": "Leave",
-        "start": 0.1,
-        "end": 0.42
-      },
-      {
-        "word": "me",
-        "start": 0.45,
-        "end": 0.55
-      },
-      {
-        "word": "alone,",
-        "start": 0.58,
-        "end": 0.98
-      },
-      {
-        "word": "I",
-        "start": 1.1,
-        "end": 1.15
-      },
-      {
-        "word": "know",
-        "start": 1.18,
-        "end": 1.45
-      },
-      {
-        "word": "what",
-        "start": 1.48,
-        "end": 1.7
-      },
-      {
-        "word": "I'm",
-        "start": 1.72,
-        "end": 1.88
-      },
-      {
-        "word": "doing.",
-        "start": 1.9,
-        "end": 2.3
-      }
-    ],
-    "asr_model": "openai/whisper-small",
-    "prosody": {
-      "arousal": 0.42,
-      "dominance": 0.71,
-      "valence": 0.61,
-      "speech_rate_wps": 3.48,
-      "pause_ratio": 0.12,
-      "mean_pause_s": 0.09,
-      "longest_pause_s": 0.15,
-      "rms_energy": 0.38,
-      "pitch_hz": 142.0,
-      "duration_s": 3.1,
-      "word_count": 8
-    },
-    "mood": {
-      "label": "CALM",
-      "confidence": 0.72,
-      "stress_index": 0.22,
-      "fatigue_index": 0.0,
-      "quadrant": "LOW_AROUSAL_POSITIVE",
-      "rationale": "Low arousal (0.42) with positive valence (0.61) indicates a calm state.",
-      "contributing_factors": []
-    },
-    "lap_context": {
-      "lap_number": 53,
-      "lap_time_s": 100.283,
-      "baseline_s": 100.32,
-      "delta_s": -0.037,
-      "next_lap_delta_s": -0.06,
-      "prev_lap_delta_s": 0.041,
-      "compound": "MEDIUM",
-      "trend": "IMPROVING",
-      "window": [
-        {
-          "lap_number": 50,
-          "lap_time_s": 100.361,
-          "delta_s": 0.041,
-          "compound": "MEDIUM",
-          "stint": 3,
-          "tyre_life": 3,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 51,
-          "lap_time_s": 100.298,
-          "delta_s": -0.022,
-          "compound": "MEDIUM",
-          "stint": 3,
-          "tyre_life": 4,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 52,
-          "lap_time_s": 100.34,
-          "delta_s": 0.02,
-          "compound": "MEDIUM",
-          "stint": 3,
-          "tyre_life": 5,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 53,
-          "lap_time_s": 100.283,
-          "delta_s": -0.037,
-          "compound": "MEDIUM",
-          "stint": 3,
-          "tyre_life": 6,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": true
-        },
-        {
-          "lap_number": 54,
-          "lap_time_s": 100.26,
-          "delta_s": -0.06,
-          "compound": "MEDIUM",
-          "stint": 3,
-          "tyre_life": 7,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        }
-      ]
-    },
-    "audio_url": "/api/audio/rai_abu_dhabi_2018_l53",
-    "processed_at": "2026-08-13T14:23:15Z",
-    "processing_ms": 1220,
-    "mocked": true
-  },
-  {
-    "clip_id": "vet_germany_2018_l52",
-    "source": "DATASET",
-    "driver": "VET",
-    "race": "Germany 2018",
-    "lap": 52,
-    "session_type": "R",
-    "transcript": "Yeah... I don't know... something feels off with the car.",
-    "words": [
-      {
-        "word": "Yeah...",
-        "start": 0.2,
-        "end": 0.8
-      },
-      {
-        "word": "I",
-        "start": 1.3,
-        "end": 1.38
-      },
-      {
-        "word": "don't",
-        "start": 1.42,
-        "end": 1.7
-      },
-      {
-        "word": "know...",
-        "start": 1.74,
-        "end": 2.4
-      },
-      {
-        "word": "something",
-        "start": 3.1,
-        "end": 3.62
-      },
-      {
-        "word": "feels",
-        "start": 3.66,
-        "end": 3.92
-      },
-      {
-        "word": "off",
-        "start": 3.95,
-        "end": 4.18
-      },
-      {
-        "word": "with",
-        "start": 4.22,
-        "end": 4.4
-      },
-      {
-        "word": "the",
-        "start": 4.42,
-        "end": 4.52
-      },
-      {
-        "word": "car.",
-        "start": 4.55,
-        "end": 5.1
-      }
-    ],
-    "asr_model": "openai/whisper-small",
-    "prosody": {
-      "arousal": 0.28,
-      "dominance": 0.35,
-      "valence": 0.32,
-      "speech_rate_wps": 1.82,
-      "pause_ratio": 0.51,
-      "mean_pause_s": 0.62,
-      "longest_pause_s": 0.72,
-      "rms_energy": 0.29,
-      "pitch_hz": 118.0,
-      "duration_s": 7.2,
-      "word_count": 10
-    },
-    "mood": {
-      "label": "TIRED",
-      "confidence": 0.8,
-      "stress_index": 0.21,
-      "fatigue_index": 1.0,
-      "quadrant": "LOW_AROUSAL_NEGATIVE",
-      "rationale": "Low arousal (0.28) with negative valence (0.32). Speech rate 1.8 w/s suggests fatigue.",
-      "contributing_factors": [
-        "low_arousal",
-        "negative_valence",
-        "slow_speech",
-        "long_pauses"
-      ]
-    },
-    "lap_context": {
-      "lap_number": 52,
-      "lap_time_s": 96.881,
-      "baseline_s": 91.42,
-      "delta_s": 5.461,
-      "next_lap_delta_s": null,
-      "prev_lap_delta_s": 2.35,
-      "compound": "SOFT",
-      "trend": "DEGRADING",
-      "window": [
-        {
-          "lap_number": 49,
-          "lap_time_s": 92.21,
-          "delta_s": 0.79,
-          "compound": "SOFT",
-          "stint": 3,
-          "tyre_life": 8,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 50,
-          "lap_time_s": 93.12,
-          "delta_s": 1.7,
-          "compound": "SOFT",
-          "stint": 3,
-          "tyre_life": 9,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 51,
-          "lap_time_s": 93.77,
-          "delta_s": 2.35,
-          "compound": "SOFT",
-          "stint": 3,
-          "tyre_life": 10,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 52,
-          "lap_time_s": 96.881,
-          "delta_s": 5.461,
-          "compound": "SOFT",
-          "stint": 3,
-          "tyre_life": 11,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": true
-        }
-      ]
-    },
-    "audio_url": "/api/audio/vet_germany_2018_l52",
-    "processed_at": "2026-08-13T14:24:42Z",
-    "processing_ms": 1650,
-    "mocked": true
-  },
-  {
     "clip_id": "upload_mock_001",
     "source": "UPLOAD",
     "driver": null,
@@ -550,301 +96,6 @@
     "mocked": true
   },
   {
-    "clip_id": "ham_hungary_2021_l45",
-    "source": "DATASET",
-    "driver": "HAM",
-    "race": "Hungary 2021",
-    "lap": 45,
-    "session_type": "R",
-    "transcript": "Copy that. Okay so the plan is to stay out and see what happens with the safety car. I'm comfortable, tyres feel alright, let's just make sure we cover Verstappen on the in-lap if he boxes first.",
-    "words": [
-      {
-        "word": "Copy",
-        "start": 0.1,
-        "end": 0.38
-      },
-      {
-        "word": "that.",
-        "start": 0.4,
-        "end": 0.72
-      },
-      {
-        "word": "Okay",
-        "start": 0.9,
-        "end": 1.2
-      },
-      {
-        "word": "so",
-        "start": 1.22,
-        "end": 1.35
-      },
-      {
-        "word": "the",
-        "start": 1.38,
-        "end": 1.48
-      },
-      {
-        "word": "plan",
-        "start": 1.5,
-        "end": 1.8
-      },
-      {
-        "word": "is",
-        "start": 1.82,
-        "end": 1.95
-      },
-      {
-        "word": "to",
-        "start": 1.97,
-        "end": 2.05
-      },
-      {
-        "word": "stay",
-        "start": 2.08,
-        "end": 2.35
-      },
-      {
-        "word": "out",
-        "start": 2.38,
-        "end": 2.58
-      },
-      {
-        "word": "and",
-        "start": 2.6,
-        "end": 2.72
-      },
-      {
-        "word": "see",
-        "start": 2.74,
-        "end": 2.92
-      },
-      {
-        "word": "what",
-        "start": 2.95,
-        "end": 3.12
-      },
-      {
-        "word": "happens",
-        "start": 3.14,
-        "end": 3.55
-      },
-      {
-        "word": "with",
-        "start": 3.58,
-        "end": 3.72
-      },
-      {
-        "word": "the",
-        "start": 3.74,
-        "end": 3.82
-      },
-      {
-        "word": "safety",
-        "start": 3.84,
-        "end": 4.2
-      },
-      {
-        "word": "car.",
-        "start": 4.22,
-        "end": 4.6
-      },
-      {
-        "word": "I'm",
-        "start": 4.8,
-        "end": 4.95
-      },
-      {
-        "word": "comfortable,",
-        "start": 4.98,
-        "end": 5.48
-      },
-      {
-        "word": "tyres",
-        "start": 5.52,
-        "end": 5.82
-      },
-      {
-        "word": "feel",
-        "start": 5.84,
-        "end": 6.08
-      },
-      {
-        "word": "alright,",
-        "start": 6.1,
-        "end": 6.52
-      },
-      {
-        "word": "let's",
-        "start": 6.72,
-        "end": 6.98
-      },
-      {
-        "word": "just",
-        "start": 7.0,
-        "end": 7.18
-      },
-      {
-        "word": "make",
-        "start": 7.2,
-        "end": 7.42
-      },
-      {
-        "word": "sure",
-        "start": 7.44,
-        "end": 7.7
-      },
-      {
-        "word": "we",
-        "start": 7.72,
-        "end": 7.82
-      },
-      {
-        "word": "cover",
-        "start": 7.84,
-        "end": 8.18
-      },
-      {
-        "word": "Verstappen",
-        "start": 8.2,
-        "end": 8.72
-      },
-      {
-        "word": "on",
-        "start": 8.74,
-        "end": 8.85
-      },
-      {
-        "word": "the",
-        "start": 8.87,
-        "end": 8.95
-      },
-      {
-        "word": "in-lap",
-        "start": 8.97,
-        "end": 9.38
-      },
-      {
-        "word": "if",
-        "start": 9.4,
-        "end": 9.5
-      },
-      {
-        "word": "he",
-        "start": 9.52,
-        "end": 9.6
-      },
-      {
-        "word": "boxes",
-        "start": 9.62,
-        "end": 9.95
-      },
-      {
-        "word": "first.",
-        "start": 9.97,
-        "end": 10.42
-      }
-    ],
-    "asr_model": "openai/whisper-small",
-    "prosody": {
-      "arousal": 0.61,
-      "dominance": 0.58,
-      "valence": 0.55,
-      "speech_rate_wps": 3.35,
-      "pause_ratio": 0.16,
-      "mean_pause_s": 0.1,
-      "longest_pause_s": 0.2,
-      "rms_energy": 0.56,
-      "pitch_hz": null,
-      "duration_s": 11.8,
-      "word_count": 37
-    },
-    "mood": {
-      "label": "STRESSED",
-      "confidence": 0.67,
-      "stress_index": 0.6,
-      "fatigue_index": 0.0,
-      "quadrant": "HIGH_AROUSAL_POSITIVE",
-      "rationale": "High arousal (0.61) with positive valence (0.55) indicates a calm state.",
-      "contributing_factors": []
-    },
-    "lap_context": {
-      "lap_number": 45,
-      "lap_time_s": 88.951,
-      "baseline_s": 87.812,
-      "delta_s": 1.139,
-      "next_lap_delta_s": 0.62,
-      "prev_lap_delta_s": 0.843,
-      "compound": "MEDIUM",
-      "trend": "IMPROVING",
-      "window": [
-        {
-          "lap_number": 42,
-          "lap_time_s": 88.655,
-          "delta_s": 0.843,
-          "compound": "MEDIUM",
-          "stint": 2,
-          "tyre_life": 12,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 43,
-          "lap_time_s": 88.82,
-          "delta_s": 1.008,
-          "compound": "MEDIUM",
-          "stint": 2,
-          "tyre_life": 13,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 44,
-          "lap_time_s": 88.655,
-          "delta_s": 0.843,
-          "compound": "MEDIUM",
-          "stint": 2,
-          "tyre_life": 14,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        },
-        {
-          "lap_number": 45,
-          "lap_time_s": 88.951,
-          "delta_s": 1.139,
-          "compound": "MEDIUM",
-          "stint": 2,
-          "tyre_life": 15,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": true
-        },
-        {
-          "lap_number": 46,
-          "lap_time_s": 88.432,
-          "delta_s": 0.62,
-          "compound": "MEDIUM",
-          "stint": 2,
-          "tyre_life": 16,
-          "is_pit_lap": false,
-          "is_accurate": true,
-          "track_status": "1",
-          "is_radio_lap": false
-        }
-      ]
-    },
-    "audio_url": "/api/audio/ham_hungary_2021_l45",
-    "processed_at": "2026-08-13T14:26:55Z",
-    "processing_ms": 3100,
-    "mocked": true
-  },
-  {
     "transcript": "Mock transcript for testing purposes.",
     "words": [
       {
@@ -906,6 +157,1107 @@
     "session_type": null,
     "audio_url": "/api/audio/upload_f131aece",
     "processed_at": "2026-08-14T14:56:19Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "I need to box!",
+    "words": [
+      {
+        "word": "I",
+        "start": 0.0,
+        "end": 0.64
+      },
+      {
+        "word": "need",
+        "start": 0.64,
+        "end": 0.78
+      },
+      {
+        "word": "to",
+        "start": 0.78,
+        "end": 0.86
+      },
+      {
+        "word": "box!",
+        "start": 0.86,
+        "end": 1.44
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.8754,
+      "dominance": 0.8354,
+      "valence": 0.6796,
+      "speech_rate_wps": 2.78,
+      "pause_ratio": 0.019,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.259,
+      "pitch_hz": 94.1,
+      "duration_s": 1.47,
+      "word_count": 4
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.72,
+      "stress_index": 0.28,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.88) with positive valence (0.68) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal",
+        "positive_valence"
+      ]
+    },
+    "processing_ms": 14493,
+    "mocked": false,
+    "clip_id": "har_australia_2018_radio_01",
+    "source": "DATASET",
+    "driver": "HAR",
+    "race": "Australia 2018",
+    "lap": null,
+    "session_type": "R",
+    "audio_url": "/api/audio/har_australia_2018_radio_01",
+    "processed_at": "2026-08-14T16:08:11Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Box, Brandon. Box, box.",
+    "words": [
+      {
+        "word": "Box,",
+        "start": 0.0,
+        "end": 0.48
+      },
+      {
+        "word": "Brandon.",
+        "start": 0.48,
+        "end": 0.9
+      },
+      {
+        "word": "Box,",
+        "start": 0.9,
+        "end": 1.16
+      },
+      {
+        "word": "box.",
+        "start": 1.16,
+        "end": 1.7
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.7139,
+      "dominance": 0.7125,
+      "valence": 0.6122,
+      "speech_rate_wps": 2.35,
+      "pause_ratio": 0.033,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.222,
+      "pitch_hz": 193.2,
+      "duration_s": 1.76,
+      "word_count": 4
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.7,
+      "stress_index": 0.277,
+      "fatigue_index": 0.3,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.71) with positive valence (0.61) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal"
+      ]
+    },
+    "processing_ms": 471,
+    "mocked": false,
+    "clip_id": "har_australia_2018_radio_02",
+    "source": "DATASET",
+    "driver": "HAR",
+    "race": "Australia 2018",
+    "lap": null,
+    "session_type": "R",
+    "audio_url": "/api/audio/har_australia_2018_radio_02",
+    "processed_at": "2026-08-14T16:08:12Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Okay, Brandon, we've got to make this walk now.",
+    "words": [
+      {
+        "word": "Okay,",
+        "start": 0.0,
+        "end": 0.48
+      },
+      {
+        "word": "Brandon,",
+        "start": 0.48,
+        "end": 0.74
+      },
+      {
+        "word": "we've",
+        "start": 0.74,
+        "end": 0.88
+      },
+      {
+        "word": "got",
+        "start": 0.88,
+        "end": 0.96
+      },
+      {
+        "word": "to",
+        "start": 0.96,
+        "end": 1.1
+      },
+      {
+        "word": "make",
+        "start": 1.1,
+        "end": 1.22
+      },
+      {
+        "word": "this",
+        "start": 1.22,
+        "end": 1.36
+      },
+      {
+        "word": "walk",
+        "start": 1.36,
+        "end": 1.5
+      },
+      {
+        "word": "now.",
+        "start": 1.5,
+        "end": 2.1
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.738,
+      "dominance": 0.7204,
+      "valence": 0.4741,
+      "speech_rate_wps": 4.29,
+      "pause_ratio": 0.009,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.235,
+      "pitch_hz": 194.3,
+      "duration_s": 2.12,
+      "word_count": 9
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.612,
+      "stress_index": 0.388,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_NEGATIVE",
+      "rationale": "High arousal (0.74) with negative valence (0.47) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal",
+        "fast_speech"
+      ]
+    },
+    "processing_ms": 500,
+    "mocked": false,
+    "clip_id": "har_australia_2018_radio_03",
+    "source": "DATASET",
+    "driver": "HAR",
+    "race": "Australia 2018",
+    "lap": null,
+    "session_type": "R",
+    "audio_url": "/api/audio/har_australia_2018_radio_03",
+    "processed_at": "2026-08-14T16:08:12Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Ok, Carlos, you're 7 tenths quicker than Vanduwen ahead on Super Soft. Let's go and get him.",
+    "words": [
+      {
+        "word": "Ok,",
+        "start": 0.0,
+        "end": 0.32
+      },
+      {
+        "word": "Carlos,",
+        "start": 0.32,
+        "end": 0.6
+      },
+      {
+        "word": "you're",
+        "start": 0.6,
+        "end": 0.78
+      },
+      {
+        "word": "7",
+        "start": 0.78,
+        "end": 1.02
+      },
+      {
+        "word": "tenths",
+        "start": 1.02,
+        "end": 1.54
+      },
+      {
+        "word": "quicker",
+        "start": 1.54,
+        "end": 1.72
+      },
+      {
+        "word": "than",
+        "start": 1.72,
+        "end": 1.96
+      },
+      {
+        "word": "Vanduwen",
+        "start": 1.96,
+        "end": 2.36
+      },
+      {
+        "word": "ahead",
+        "start": 2.36,
+        "end": 2.56
+      },
+      {
+        "word": "on",
+        "start": 2.56,
+        "end": 2.8
+      },
+      {
+        "word": "Super",
+        "start": 2.8,
+        "end": 3.08
+      },
+      {
+        "word": "Soft.",
+        "start": 3.08,
+        "end": 3.66
+      },
+      {
+        "word": "Let's",
+        "start": 3.66,
+        "end": 3.84
+      },
+      {
+        "word": "go",
+        "start": 3.84,
+        "end": 3.96
+      },
+      {
+        "word": "and",
+        "start": 3.96,
+        "end": 4.06
+      },
+      {
+        "word": "get",
+        "start": 4.06,
+        "end": 4.14
+      },
+      {
+        "word": "him.",
+        "start": 4.14,
+        "end": 4.52
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.7075,
+      "dominance": 0.7041,
+      "valence": 0.7346,
+      "speech_rate_wps": 3.76,
+      "pause_ratio": 0.007,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.259,
+      "pitch_hz": 147.3,
+      "duration_s": 4.55,
+      "word_count": 17
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.812,
+      "stress_index": 0.188,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.71) with positive valence (0.73) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal",
+        "positive_valence",
+        "fast_speech"
+      ]
+    },
+    "processing_ms": 922,
+    "mocked": false,
+    "clip_id": "sai_australia_2018_radio_04",
+    "source": "DATASET",
+    "driver": "SAI",
+    "race": "Australia 2018",
+    "lap": null,
+    "session_type": "R",
+    "audio_url": "/api/audio/sai_australia_2018_radio_04",
+    "processed_at": "2026-08-14T16:08:13Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Okay, Carlos, everything looks clear from our side? Yeah, it feels normal now. Okay, understood.",
+    "words": [
+      {
+        "word": "Okay,",
+        "start": 0.0,
+        "end": 0.38
+      },
+      {
+        "word": "Carlos,",
+        "start": 0.38,
+        "end": 0.7
+      },
+      {
+        "word": "everything",
+        "start": 0.7,
+        "end": 0.9
+      },
+      {
+        "word": "looks",
+        "start": 0.9,
+        "end": 1.16
+      },
+      {
+        "word": "clear",
+        "start": 1.16,
+        "end": 1.5
+      },
+      {
+        "word": "from",
+        "start": 1.5,
+        "end": 1.72
+      },
+      {
+        "word": "our",
+        "start": 1.72,
+        "end": 1.86
+      },
+      {
+        "word": "side?",
+        "start": 1.86,
+        "end": 3.28
+      },
+      {
+        "word": "Yeah,",
+        "start": 3.48,
+        "end": 4.06
+      },
+      {
+        "word": "it",
+        "start": 4.06,
+        "end": 4.06
+      },
+      {
+        "word": "feels",
+        "start": 4.06,
+        "end": 4.22
+      },
+      {
+        "word": "normal",
+        "start": 4.22,
+        "end": 4.48
+      },
+      {
+        "word": "now.",
+        "start": 4.48,
+        "end": 5.52
+      },
+      {
+        "word": "Okay,",
+        "start": 5.56,
+        "end": 6.58
+      },
+      {
+        "word": "understood.",
+        "start": 6.58,
+        "end": 7.76
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.5971,
+      "dominance": 0.6132,
+      "valence": 0.5303,
+      "speech_rate_wps": 1.99,
+      "pause_ratio": 0.048,
+      "mean_pause_s": 0.12,
+      "longest_pause_s": 0.2,
+      "rms_energy": 0.266,
+      "pitch_hz": 176.1,
+      "duration_s": 7.9,
+      "word_count": 15
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.7,
+      "stress_index": 0.28,
+      "fatigue_index": 0.3,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.60) with positive valence (0.53) indicates a calm state.",
+      "contributing_factors": [
+        "slow_speech"
+      ]
+    },
+    "processing_ms": 1145,
+    "mocked": false,
+    "clip_id": "sai_australia_2018_radio_05",
+    "source": "DATASET",
+    "driver": "SAI",
+    "race": "Australia 2018",
+    "lap": null,
+    "session_type": "R",
+    "audio_url": "/api/audio/sai_australia_2018_radio_05",
+    "processed_at": "2026-08-14T16:08:15Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Right, let's settle into it, mate. That's all the pace, let's go.",
+    "words": [
+      {
+        "word": "Right,",
+        "start": 0.0,
+        "end": 0.76
+      },
+      {
+        "word": "let's",
+        "start": 0.76,
+        "end": 1.06
+      },
+      {
+        "word": "settle",
+        "start": 1.06,
+        "end": 1.2
+      },
+      {
+        "word": "into",
+        "start": 1.2,
+        "end": 1.4
+      },
+      {
+        "word": "it,",
+        "start": 1.4,
+        "end": 1.52
+      },
+      {
+        "word": "mate.",
+        "start": 1.52,
+        "end": 1.92
+      },
+      {
+        "word": "That's",
+        "start": 1.92,
+        "end": 2.06
+      },
+      {
+        "word": "all",
+        "start": 2.06,
+        "end": 2.18
+      },
+      {
+        "word": "the",
+        "start": 2.18,
+        "end": 2.3
+      },
+      {
+        "word": "pace,",
+        "start": 2.3,
+        "end": 2.64
+      },
+      {
+        "word": "let's",
+        "start": 2.64,
+        "end": 2.8
+      },
+      {
+        "word": "go.",
+        "start": 2.8,
+        "end": 3.2
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.5261,
+      "dominance": 0.5292,
+      "valence": 0.6677,
+      "speech_rate_wps": 3.75,
+      "pause_ratio": 0.007,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.231,
+      "pitch_hz": 134.3,
+      "duration_s": 3.223,
+      "word_count": 12
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.825,
+      "stress_index": 0.175,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.53) with positive valence (0.67) indicates a calm state.",
+      "contributing_factors": [
+        "positive_valence",
+        "fast_speech"
+      ]
+    },
+    "processing_ms": 18503,
+    "mocked": false,
+    "clip_id": "upload_908fe823",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_908fe823",
+    "processed_at": "2026-08-14T16:28:02Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "yellow turn one, yellow turn one, good pace mate, yellow turn one, Grosjean stopped, exit turn two.",
+    "words": [
+      {
+        "word": "yellow",
+        "start": 0.0,
+        "end": 0.3
+      },
+      {
+        "word": "turn",
+        "start": 0.3,
+        "end": 0.6
+      },
+      {
+        "word": "one,",
+        "start": 0.6,
+        "end": 1.1
+      },
+      {
+        "word": "yellow",
+        "start": 1.1,
+        "end": 1.22
+      },
+      {
+        "word": "turn",
+        "start": 1.22,
+        "end": 1.52
+      },
+      {
+        "word": "one,",
+        "start": 1.52,
+        "end": 2.02
+      },
+      {
+        "word": "good",
+        "start": 2.02,
+        "end": 2.16
+      },
+      {
+        "word": "pace",
+        "start": 2.16,
+        "end": 2.4
+      },
+      {
+        "word": "mate,",
+        "start": 2.4,
+        "end": 2.88
+      },
+      {
+        "word": "yellow",
+        "start": 2.88,
+        "end": 3.0
+      },
+      {
+        "word": "turn",
+        "start": 3.0,
+        "end": 3.26
+      },
+      {
+        "word": "one,",
+        "start": 3.26,
+        "end": 4.38
+      },
+      {
+        "word": "Grosjean",
+        "start": 4.38,
+        "end": 4.74
+      },
+      {
+        "word": "stopped,",
+        "start": 4.74,
+        "end": 5.26
+      },
+      {
+        "word": "exit",
+        "start": 5.26,
+        "end": 5.52
+      },
+      {
+        "word": "turn",
+        "start": 5.52,
+        "end": 5.76
+      },
+      {
+        "word": "two.",
+        "start": 5.76,
+        "end": 6.32
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.6873,
+      "dominance": 0.6705,
+      "valence": 0.7139,
+      "speech_rate_wps": 2.69,
+      "pause_ratio": 0.002,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.205,
+      "pitch_hz": 143.5,
+      "duration_s": 6.331,
+      "word_count": 17
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.803,
+      "stress_index": 0.197,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.69) with positive valence (0.71) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal",
+        "positive_valence"
+      ]
+    },
+    "processing_ms": 1913,
+    "mocked": false,
+    "clip_id": "upload_7b855527",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_7b855527",
+    "processed_at": "2026-08-14T16:28:39Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "yellow turn one, yellow turn one, good pace mate, yellow turn one, Grosjean stopped, exit turn two.",
+    "words": [
+      {
+        "word": "yellow",
+        "start": 0.0,
+        "end": 0.3
+      },
+      {
+        "word": "turn",
+        "start": 0.3,
+        "end": 0.6
+      },
+      {
+        "word": "one,",
+        "start": 0.6,
+        "end": 1.1
+      },
+      {
+        "word": "yellow",
+        "start": 1.1,
+        "end": 1.22
+      },
+      {
+        "word": "turn",
+        "start": 1.22,
+        "end": 1.52
+      },
+      {
+        "word": "one,",
+        "start": 1.52,
+        "end": 2.02
+      },
+      {
+        "word": "good",
+        "start": 2.02,
+        "end": 2.16
+      },
+      {
+        "word": "pace",
+        "start": 2.16,
+        "end": 2.4
+      },
+      {
+        "word": "mate,",
+        "start": 2.4,
+        "end": 2.88
+      },
+      {
+        "word": "yellow",
+        "start": 2.88,
+        "end": 3.0
+      },
+      {
+        "word": "turn",
+        "start": 3.0,
+        "end": 3.26
+      },
+      {
+        "word": "one,",
+        "start": 3.26,
+        "end": 4.38
+      },
+      {
+        "word": "Grosjean",
+        "start": 4.38,
+        "end": 4.74
+      },
+      {
+        "word": "stopped,",
+        "start": 4.74,
+        "end": 5.26
+      },
+      {
+        "word": "exit",
+        "start": 5.26,
+        "end": 5.52
+      },
+      {
+        "word": "turn",
+        "start": 5.52,
+        "end": 5.76
+      },
+      {
+        "word": "two.",
+        "start": 5.76,
+        "end": 6.32
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.6873,
+      "dominance": 0.6705,
+      "valence": 0.7139,
+      "speech_rate_wps": 2.69,
+      "pause_ratio": 0.002,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.205,
+      "pitch_hz": 143.5,
+      "duration_s": 6.331,
+      "word_count": 17
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.803,
+      "stress_index": 0.197,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.69) with positive valence (0.71) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal",
+        "positive_valence"
+      ]
+    },
+    "processing_ms": 1713,
+    "mocked": false,
+    "clip_id": "upload_6eb21e4d",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_6eb21e4d",
+    "processed_at": "2026-08-14T16:28:59Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Okay, virtual safety car, virtual safety car. Okay, so you need to be positive on the Delta, positive on the Delta.",
+    "words": [
+      {
+        "word": "Okay,",
+        "start": 0.0,
+        "end": 0.32
+      },
+      {
+        "word": "virtual",
+        "start": 0.32,
+        "end": 0.54
+      },
+      {
+        "word": "safety",
+        "start": 0.54,
+        "end": 0.76
+      },
+      {
+        "word": "car,",
+        "start": 0.76,
+        "end": 1.18
+      },
+      {
+        "word": "virtual",
+        "start": 1.18,
+        "end": 1.38
+      },
+      {
+        "word": "safety",
+        "start": 1.38,
+        "end": 1.62
+      },
+      {
+        "word": "car.",
+        "start": 1.62,
+        "end": 2.36
+      },
+      {
+        "word": "Okay,",
+        "start": 2.62,
+        "end": 3.02
+      },
+      {
+        "word": "so",
+        "start": 3.02,
+        "end": 3.16
+      },
+      {
+        "word": "you",
+        "start": 3.16,
+        "end": 3.28
+      },
+      {
+        "word": "need",
+        "start": 3.28,
+        "end": 3.4
+      },
+      {
+        "word": "to",
+        "start": 3.4,
+        "end": 3.56
+      },
+      {
+        "word": "be",
+        "start": 3.56,
+        "end": 3.66
+      },
+      {
+        "word": "positive",
+        "start": 3.66,
+        "end": 4.06
+      },
+      {
+        "word": "on",
+        "start": 4.06,
+        "end": 4.32
+      },
+      {
+        "word": "the",
+        "start": 4.32,
+        "end": 4.42
+      },
+      {
+        "word": "Delta,",
+        "start": 4.42,
+        "end": 5.0
+      },
+      {
+        "word": "positive",
+        "start": 5.02,
+        "end": 5.26
+      },
+      {
+        "word": "on",
+        "start": 5.26,
+        "end": 5.68
+      },
+      {
+        "word": "the",
+        "start": 5.68,
+        "end": 5.78
+      },
+      {
+        "word": "Delta.",
+        "start": 5.78,
+        "end": 6.3
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.5461,
+      "dominance": 0.595,
+      "valence": 0.6152,
+      "speech_rate_wps": 3.49,
+      "pause_ratio": 0.066,
+      "mean_pause_s": 0.14,
+      "longest_pause_s": 0.26,
+      "rms_energy": 0.222,
+      "pitch_hz": 133.5,
+      "duration_s": 6.448,
+      "word_count": 21
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.79,
+      "stress_index": 0.21,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.55) with positive valence (0.62) indicates a calm state.",
+      "contributing_factors": []
+    },
+    "processing_ms": 2319,
+    "mocked": false,
+    "clip_id": "upload_2c264f94",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_2c264f94",
+    "processed_at": "2026-08-14T16:29:12Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "Who's here? It's Saifiel. You do not need to Saifiel, just need to be positive on the Delta. Remember the sketch.",
+    "words": [
+      {
+        "word": "Who's",
+        "start": 0.0,
+        "end": 0.3
+      },
+      {
+        "word": "here?",
+        "start": 0.3,
+        "end": 0.88
+      },
+      {
+        "word": "It's",
+        "start": 2.98,
+        "end": 3.76
+      },
+      {
+        "word": "Saifiel.",
+        "start": 3.76,
+        "end": 4.64
+      },
+      {
+        "word": "You",
+        "start": 5.18,
+        "end": 5.6
+      },
+      {
+        "word": "do",
+        "start": 5.6,
+        "end": 5.72
+      },
+      {
+        "word": "not",
+        "start": 5.72,
+        "end": 5.88
+      },
+      {
+        "word": "need",
+        "start": 5.88,
+        "end": 6.06
+      },
+      {
+        "word": "to",
+        "start": 6.06,
+        "end": 6.16
+      },
+      {
+        "word": "Saifiel,",
+        "start": 6.16,
+        "end": 6.62
+      },
+      {
+        "word": "just",
+        "start": 6.62,
+        "end": 6.88
+      },
+      {
+        "word": "need",
+        "start": 6.88,
+        "end": 7.04
+      },
+      {
+        "word": "to",
+        "start": 7.04,
+        "end": 7.16
+      },
+      {
+        "word": "be",
+        "start": 7.16,
+        "end": 7.24
+      },
+      {
+        "word": "positive",
+        "start": 7.24,
+        "end": 7.5
+      },
+      {
+        "word": "on",
+        "start": 7.5,
+        "end": 7.68
+      },
+      {
+        "word": "the",
+        "start": 7.68,
+        "end": 7.76
+      },
+      {
+        "word": "Delta.",
+        "start": 7.76,
+        "end": 8.44
+      },
+      {
+        "word": "Remember",
+        "start": 9.14,
+        "end": 9.52
+      },
+      {
+        "word": "the",
+        "start": 9.52,
+        "end": 9.7
+      },
+      {
+        "word": "sketch.",
+        "start": 9.7,
+        "end": 10.48
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.7022,
+      "dominance": 0.7147,
+      "valence": 0.7157,
+      "speech_rate_wps": 2.94,
+      "pause_ratio": 0.319,
+      "mean_pause_s": 1.113,
+      "longest_pause_s": 2.1,
+      "rms_energy": 0.211,
+      "pitch_hz": 126.7,
+      "duration_s": 10.492,
+      "word_count": 21
+    },
+    "mood": {
+      "label": "CALM",
+      "confidence": 0.8,
+      "stress_index": 0.2,
+      "fatigue_index": 0.2,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.70) with positive valence (0.72) indicates a calm state.",
+      "contributing_factors": [
+        "high_arousal",
+        "positive_valence"
+      ]
+    },
+    "processing_ms": 3001,
+    "mocked": false,
+    "clip_id": "upload_996b7939",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_996b7939",
+    "processed_at": "2026-08-14T16:29:37Z",
     "lap_context": null
   }
 ]

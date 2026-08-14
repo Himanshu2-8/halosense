@@ -1,6 +1,6 @@
 clip_id,driver,race,lap,session_type,source_url,notes
-ham_silverstone_2021_l52,HAM,Silverstone 2021,52,R,,Synthetic voice fixture; not original race radio
-rai_abu_dhabi_2018_l53,RAI,Abu Dhabi 2018,53,R,,Synthetic voice fixture; not original race radio
-vet_germany_2018_l52,VET,Germany 2018,52,R,,Synthetic voice fixture; not original race radio
-upload_mock_001,,,,,,Synthetic upload fixture with no metadata
-ham_hungary_2021_l45,HAM,Hungary 2021,45,R,,Synthetic voice fixture; not original race radio
+har_australia_2018_radio_01,HAR,Australia 2018,,R,,Source file 01_BREHAR01_2018_Australian_Grand_Prix.wav; lap unknown
+har_australia_2018_radio_02,HAR,Australia 2018,,R,,Source file 02_BREHAR01_2018_Australian_Grand_Prix.wav; lap unknown
+har_australia_2018_radio_03,HAR,Australia 2018,,R,,Source file 03_BREHAR01_2018_Australian_Grand_Prix.wav; lap unknown
+sai_australia_2018_radio_04,SAI,Australia 2018,,R,,Source file 04_CARSAI01_2018_Australian_Grand_Prix.wav; lap unknown
+sai_australia_2018_radio_05,SAI,Australia 2018,,R,,Source file 05_CARSAI01_2018_Australian_Grand_Prix.wav; lap unknown

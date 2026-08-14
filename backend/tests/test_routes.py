@@ -50,6 +50,8 @@ def test_correlation_headline_does_not_overclaim_insignificant_data():
 
 
 def test_upload_is_cached_with_retrievable_audio(tmp_path, monkeypatch):
+    import soundfile as sf
+
     from app.config import settings
     from app.services import cache_service
 
@@ -57,9 +59,15 @@ def test_upload_is_cached_with_retrievable_audio(tmp_path, monkeypatch):
     uploads_dir = tmp_path / "uploads"
     monkeypatch.setattr(settings, "CACHE_FILE", str(cache_file))
     monkeypatch.setattr(settings, "UPLOADS_DIR", str(uploads_dir))
+    monkeypatch.setattr(settings, "MOCK_ML", True)
     monkeypatch.setattr(cache_service, "_cache", {})
 
-    source_audio = Path(__file__).resolve().parents[2] / "data" / "clips" / "ham_silverstone_2021_l52.wav"
+    clips_dir = Path(__file__).resolve().parents[2] / "data" / "clips"
+    source_audio = next(
+        path
+        for path in sorted(clips_dir.glob("*.wav"))
+        if sf.info(path).duration > 2
+    )
     with source_audio.open("rb") as handle:
         response = client.post("/api/analyze", files={"file": ("sample.wav", handle, "audio/wav")})
 
