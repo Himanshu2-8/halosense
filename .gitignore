@@ -67,6 +67,7 @@ models/
 # We do NOT commit the raw downloads they were cut from.
 data/raw/
 data/tmp/
+f1_radio_clips/
 *.mp4
 *.mkv
 *.webm

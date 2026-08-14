@@ -120,3 +120,19 @@ export function getAudioUrl(clipId: string): string {
   if (USE_MOCKS) return "";
   return `/api/audio/${clipId}`;
 }
+
+
+export async function deleteClip(clipId: string): Promise<void> {
+  const isMock = process.env.NEXT_PUBLIC_USE_MOCKS === "1";
+  if (isMock) {
+    return new Promise(r => setTimeout(r, 500));
+  }
+  
+  const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "http://localhost:8000";
+  const res = await fetch(`${API_BASE}/api/clips/${clipId}`, {
+    method: "DELETE"
+  });
+  if (!res.ok) {
+    throw new Error(`Failed to delete clip: ${res.status}`);
+  }
+}

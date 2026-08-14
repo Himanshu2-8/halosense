@@ -59,6 +59,14 @@ def add_to_cache(clip_id: str, analysis: dict) -> None:
     _save_cache(cache)
 
 
+def remove_from_cache(clip_id: str) -> None:
+    """Remove an analysis and persist to disk."""
+    cache = get_cache()
+    if clip_id in cache:
+        del cache[clip_id]
+        _save_cache(cache)
+
+
 def _save_cache(cache: dict) -> None:
     """Write the cache back to analyses.json."""
     cache_path = settings.resolve_path(settings.CACHE_FILE)

@@ -79,3 +79,31 @@ async def get_clip(clip_id: str):
             },
         )
     return cache[clip_id]
+
+
+@router.delete("/clips/{clip_id}")
+async def delete_clip(clip_id: str):
+    """Delete a custom uploaded clip."""
+    from app.services.cache_service import get_cache, remove_from_cache
+    from app.config import settings
+    
+    cache = get_cache()
+    if clip_id not in cache:
+        raise HTTPException(status_code=404, detail="Clip not found")
+        
+    analysis = cache[clip_id]
+    if analysis.get("source") != "UPLOAD" and not clip_id.startswith("upload_"):
+        raise HTTPException(status_code=403, detail="Only custom uploads can be deleted.")
+        
+    remove_from_cache(clip_id)
+    
+    uploads_dir = settings.resolve_path(settings.UPLOADS_DIR)
+    for ext in (".wav", ".mp3", ".m4a", ".ogg", ".flac"):
+        file_path = uploads_dir / f"{clip_id}{ext}"
+        if file_path.exists():
+            try:
+                file_path.unlink()
+            except:
+                pass
+                
+    return {"status": "ok", "message": f"Deleted {clip_id}"}

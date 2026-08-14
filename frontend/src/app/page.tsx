@@ -5,7 +5,7 @@ import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip,
   ResponsiveContainer, ScatterChart, Scatter, ReferenceLine, Label, Cell,
 } from "recharts";
-import { fetchClips, fetchClip, fetchCorrelation, fetchHealth, analyzeAudio } from "../lib/api";
+import { fetchClips, fetchClip, fetchCorrelation, fetchHealth, analyzeAudio, deleteClip } from "../lib/api";
 import type { ClipSummary, ClipAnalysis, CorrelationSummary, HealthStatus, LapPoint } from "../lib/types";
 
 const MOOD_COLORS: Record<string, string> = {
@@ -537,7 +537,7 @@ function UploadPanel({ onUploadComplete }: { onUploadComplete?: (result: ClipAna
 
 // ─── Sidebar ─────────────────────────
 
-function Sidebar({ clips, selected, onSelect }: { clips: ClipSummary[]; selected: string | null; onSelect: (id: string) => void }) {
+function Sidebar({ clips, selected, onSelect, onDelete }: { clips: ClipSummary[]; selected: string | null; onSelect: (id: string) => void; onDelete: (e: React.MouseEvent, id: string) => void }) {
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("All");
   const moods = useMemo(() => ["All", "STRESSED", "CALM", "TIRED", "UNKNOWN"], []);
@@ -598,8 +598,20 @@ function Sidebar({ clips, selected, onSelect }: { clips: ClipSummary[]; selected
             <button key={clip.clip_id} onClick={() => onSelect(clip.clip_id)} className="w-full text-left px-4 py-3.5 border-b border-[#0f1218] hover:bg-[#0d1120] transition-colors"
               style={active ? { background: `linear-gradient(135deg,${color}0d,rgba(0,212,255,0.04))`, borderLeft: `2px solid ${color}`, paddingLeft: "14px" } : {}}>
               <div className="flex items-start justify-between gap-2 mb-1.5">
-                <div className="min-w-0">
-                  <div className="font-display text-[10px] font-bold tracking-wider text-[#dce6f5] uppercase truncate">{clip.driver || "Unknown"}</div>
+                <div className="min-w-0 flex-1">
+                  <div className="font-display text-[10px] font-bold tracking-wider text-[#dce6f5] uppercase truncate flex items-center justify-between">
+                    <span>{clip.driver || "Unknown"}</span>
+                    {clip.clip_id.startsWith("upload_") && (
+                      <div 
+                        role="button"
+                        onClick={(e) => onDelete(e, clip.clip_id)}
+                        className="text-[#5a6e8a] hover:text-[#e8002d] transition-colors px-1 cursor-pointer"
+                        title="Delete custom clip"
+                      >
+                        ×
+                      </div>
+                    )}
+                  </div>
                   <div className="font-mono text-[9px] text-[#3a4e68] truncate">{clip.race || "Track"}</div>
                 </div>
                 <DeltaBadge delta={clip.delta_s} />
@@ -680,6 +692,23 @@ export default function Home() {
 
   const activeSummary = clips.find(c => c.clip_id === activeClipId);
 
+
+  const handleDelete = async (e: React.MouseEvent, clipId: string) => {
+    e.stopPropagation();
+    try {
+      await deleteClip(clipId);
+      setClips(prev => prev.filter(c => c.clip_id !== clipId));
+      if (activeClipId === clipId) {
+        const remaining = clips.filter(c => c.clip_id !== clipId);
+        if (remaining.length > 0) {
+          setActiveClipId(remaining[0].clip_id);
+        }
+      }
+    } catch (err) {
+      console.error("Failed to delete clip", err);
+    }
+  };
+
   const handleUpload = (res: ClipAnalysis) => {
     const id = res.clip_id || `upload_${Date.now()}`;
     res.clip_id = id;
@@ -710,7 +739,7 @@ export default function Home() {
   return (
     <div className="flex h-screen overflow-hidden bg-[#06080d] text-[#dce6f5]">
       <div className="scan-line" />
-      <Sidebar clips={clips} selected={activeClipId} onSelect={setActiveClipId} />
+      <Sidebar clips={clips} selected={activeClipId} onSelect={setActiveClipId} onDelete={handleDelete} />
 
       <div className="flex-1 flex flex-col overflow-hidden">
         <header className="flex-shrink-0 bg-[#08090e] border-b border-[#1c2638] px-6 py-2 flex items-center gap-4">
