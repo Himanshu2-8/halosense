@@ -32,14 +32,14 @@ def _compute_mood(prosody: dict) -> dict:
     duration_s = prosody["duration_s"]
 
     # --- Stress index ---
-    # We apply a square root to amplify the curve, boosting 0.25 -> 0.50.
-    stress_index = (arousal * (1.0 - valence)) ** 0.5
+    # We apply a square root to amplify the curve, and reward high arousal.
+    stress_index = (arousal * (1.0 - valence)) ** 0.5 + max(0.0, arousal - 0.72) * 2
     stress_index = max(0.0, min(1.0, stress_index))
 
     # --- Fatigue index ---
     fatigue_signals = []
-    if arousal < 0.4:
-        fatigue_signals.append(0.3)
+    if arousal < 0.65:
+        fatigue_signals.append(0.2)
     if speech_rate is not None and speech_rate < 2.5:
         fatigue_signals.append(0.3)
     if pause_ratio is not None and pause_ratio > 0.4:
@@ -50,7 +50,7 @@ def _compute_mood(prosody: dict) -> dict:
 
     # --- Label decision ---
     STRESS_THRESHOLD = 0.55
-    FATIGUE_THRESHOLD = 0.50
+    FATIGUE_THRESHOLD = 0.40
 
     if word_count < 2 or duration_s < 0.5:
         label = "UNKNOWN"

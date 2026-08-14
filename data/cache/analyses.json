@@ -841,7 +841,7 @@
       "longest_pause_s": null,
       "rms_energy": 0.259,
       "pitch_hz": 94.1,
-      "duration_s": 1.47,
+      "duration_s": 1.467,
       "word_count": 4
     },
     "mood": {
@@ -856,7 +856,69 @@
         "positive_valence"
       ]
     },
-    "processing_ms": 12309,
+    "processing_ms": 17956,
+    "mocked": false,
+    "clip_id": "upload_01b12789",
+    "source": "UPLOAD",
+    "driver": "Custom",
+    "race": "Testing",
+    "lap": 1,
+    "session_type": null,
+    "audio_url": "/api/audio/upload_01b12789",
+    "processed_at": "2026-08-14T17:35:55Z",
+    "lap_context": null
+  },
+  {
+    "transcript": "I need to box!",
+    "words": [
+      {
+        "word": "I",
+        "start": 0.0,
+        "end": 0.64
+      },
+      {
+        "word": "need",
+        "start": 0.64,
+        "end": 0.78
+      },
+      {
+        "word": "to",
+        "start": 0.78,
+        "end": 0.86
+      },
+      {
+        "word": "box!",
+        "start": 0.86,
+        "end": 1.44
+      }
+    ],
+    "asr_model": "openai/whisper-small",
+    "prosody": {
+      "arousal": 0.8754,
+      "dominance": 0.8354,
+      "valence": 0.6796,
+      "speech_rate_wps": 2.78,
+      "pause_ratio": 0.019,
+      "mean_pause_s": null,
+      "longest_pause_s": null,
+      "rms_energy": 0.259,
+      "pitch_hz": 94.1,
+      "duration_s": 1.47,
+      "word_count": 4
+    },
+    "mood": {
+      "label": "STRESSED",
+      "confidence": 0.84,
+      "stress_index": 0.84,
+      "fatigue_index": 0,
+      "quadrant": "HIGH_AROUSAL_POSITIVE",
+      "rationale": "High arousal (0.88) with positive valence (0.68) indicates acute stress.",
+      "contributing_factors": [
+        "high_arousal",
+        "positive_valence"
+      ]
+    },
+    "processing_ms": 15816,
     "mocked": false,
     "clip_id": "har_australia_2018_radio_01",
     "source": "DATASET",
@@ -865,7 +927,7 @@
     "lap": null,
     "session_type": "R",
     "audio_url": "/api/audio/har_australia_2018_radio_01",
-    "processed_at": "2026-08-14T17:07:02Z",
+    "processed_at": "2026-08-14T18:07:41Z",
     "lap_context": null
   },
   {
@@ -917,7 +979,7 @@
         "high_arousal"
       ]
     },
-    "processing_ms": 629,
+    "processing_ms": 492,
     "mocked": false,
     "clip_id": "har_australia_2018_radio_02",
     "source": "DATASET",
@@ -926,7 +988,7 @@
     "lap": null,
     "session_type": "R",
     "audio_url": "/api/audio/har_australia_2018_radio_02",
-    "processed_at": "2026-08-14T17:07:02Z",
+    "processed_at": "2026-08-14T18:07:42Z",
     "lap_context": null
   },
   {
@@ -994,8 +1056,8 @@
     },
     "mood": {
       "label": "STRESSED",
-      "confidence": 0.623,
-      "stress_index": 0.623,
+      "confidence": 0.659,
+      "stress_index": 0.659,
       "fatigue_index": 0,
       "quadrant": "HIGH_AROUSAL_NEGATIVE",
       "rationale": "High arousal (0.74) with negative valence (0.47) indicates acute stress.",
@@ -1004,7 +1066,7 @@
         "fast_speech"
       ]
     },
-    "processing_ms": 698,
+    "processing_ms": 515,
     "mocked": false,
     "clip_id": "har_australia_2018_radio_03",
     "source": "DATASET",
@@ -1013,7 +1075,7 @@
     "lap": null,
     "session_type": "R",
     "audio_url": "/api/audio/har_australia_2018_radio_03",
-    "processed_at": "2026-08-14T17:07:03Z",
+    "processed_at": "2026-08-14T18:07:42Z",
     "lap_context": null
   },
   {
@@ -1132,7 +1194,7 @@
         "fast_speech"
       ]
     },
-    "processing_ms": 912,
+    "processing_ms": 954,
     "mocked": false,
     "clip_id": "sai_australia_2018_radio_04",
     "source": "DATASET",
@@ -1141,7 +1203,7 @@
     "lap": null,
     "session_type": "R",
     "audio_url": "/api/audio/sai_australia_2018_radio_04",
-    "processed_at": "2026-08-14T17:07:04Z",
+    "processed_at": "2026-08-14T18:07:43Z",
     "lap_context": null
   },
   {
@@ -1238,17 +1300,17 @@
       "word_count": 15
     },
     "mood": {
-      "label": "CALM",
-      "confidence": 0.47,
+      "label": "TIRED",
+      "confidence": 0.5,
       "stress_index": 0.53,
-      "fatigue_index": 0.3,
+      "fatigue_index": 0.5,
       "quadrant": "HIGH_AROUSAL_POSITIVE",
-      "rationale": "High arousal (0.60) with positive valence (0.53) indicates a calm state.",
+      "rationale": "High arousal (0.60) with positive valence (0.53). Speech rate 2.0 w/s suggests fatigue.",
       "contributing_factors": [
         "slow_speech"
       ]
     },
-    "processing_ms": 1097,
+    "processing_ms": 1286,
     "mocked": false,
     "clip_id": "sai_australia_2018_radio_05",
     "source": "DATASET",
@@ -1257,69 +1319,7 @@
     "lap": null,
     "session_type": "R",
     "audio_url": "/api/audio/sai_australia_2018_radio_05",
-    "processed_at": "2026-08-14T17:07:05Z",
-    "lap_context": null
-  },
-  {
-    "transcript": "I need to box!",
-    "words": [
-      {
-        "word": "I",
-        "start": 0.0,
-        "end": 0.64
-      },
-      {
-        "word": "need",
-        "start": 0.64,
-        "end": 0.78
-      },
-      {
-        "word": "to",
-        "start": 0.78,
-        "end": 0.86
-      },
-      {
-        "word": "box!",
-        "start": 0.86,
-        "end": 1.44
-      }
-    ],
-    "asr_model": "openai/whisper-small",
-    "prosody": {
-      "arousal": 0.8754,
-      "dominance": 0.8354,
-      "valence": 0.6796,
-      "speech_rate_wps": 2.78,
-      "pause_ratio": 0.019,
-      "mean_pause_s": null,
-      "longest_pause_s": null,
-      "rms_energy": 0.259,
-      "pitch_hz": 94.1,
-      "duration_s": 1.467,
-      "word_count": 4
-    },
-    "mood": {
-      "label": "CALM",
-      "confidence": 0.47,
-      "stress_index": 0.53,
-      "fatigue_index": 0,
-      "quadrant": "HIGH_AROUSAL_POSITIVE",
-      "rationale": "High arousal (0.88) with positive valence (0.68) indicates a calm state.",
-      "contributing_factors": [
-        "high_arousal",
-        "positive_valence"
-      ]
-    },
-    "processing_ms": 17956,
-    "mocked": false,
-    "clip_id": "upload_01b12789",
-    "source": "UPLOAD",
-    "driver": "Custom",
-    "race": "Testing",
-    "lap": 1,
-    "session_type": null,
-    "audio_url": "/api/audio/upload_01b12789",
-    "processed_at": "2026-08-14T17:35:55Z",
+    "processed_at": "2026-08-14T18:07:44Z",
     "lap_context": null
   }
 ]
