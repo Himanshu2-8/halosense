@@ -97,7 +97,9 @@ function AudioPlayer({ summary, analysis, onProgress }: { summary: ClipSummary; 
     const r = e.currentTarget.getBoundingClientRect();
     const p = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
     setProgress(p);
-    if (audioRef.current) audioRef.current.currentTime = p * DURATION;
+    if (audioRef.current && audioRef.current.duration) {
+      audioRef.current.currentTime = p * audioRef.current.duration;
+    }
   }, [DURATION]);
 
   const togglePlay = () => {
@@ -119,7 +121,10 @@ function AudioPlayer({ summary, analysis, onProgress }: { summary: ClipSummary; 
       <audio
         ref={audioRef}
         src={analysis.audio_url || undefined}
-        onTimeUpdate={(e) => setProgress(e.currentTarget.currentTime / DURATION)}
+        onTimeUpdate={(e) => {
+          const dur = e.currentTarget.duration || DURATION;
+          setProgress(e.currentTarget.currentTime / dur);
+        }}
         onEnded={() => { setPlaying(false); setProgress(1); }}
         onError={() => { setPlaying(false); setMediaError(true); }}
       />
@@ -433,7 +438,7 @@ function UploadPanel({ onUploadComplete }: { onUploadComplete?: (result: ClipAna
     setPct(20);
     setError("");
     try {
-      const res = await analyzeAudio(file, { driver: "Custom", race: "Testing", lap: 1 });
+      const res = await analyzeAudio(file, { driver: "Custom", race: "Testing", lap: 1 }, setPct);
       setPct(100);
       setResult(res);
       setState("done");

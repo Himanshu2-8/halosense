@@ -32,7 +32,8 @@ def _compute_mood(prosody: dict) -> dict:
     duration_s = prosody["duration_s"]
 
     # --- Stress index ---
-    stress_index = arousal * (1.0 - valence)
+    # We apply a square root to amplify the curve, boosting 0.25 -> 0.50.
+    stress_index = (arousal * (1.0 - valence)) ** 0.5
     stress_index = max(0.0, min(1.0, stress_index))
 
     # --- Fatigue index ---

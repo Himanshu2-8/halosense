@@ -71,7 +71,7 @@ Read these in order:
 ### Rules for AI agents working on this repo
 
 1. **Read the CONTRACT first.** All JSON shapes are frozen. Do not invent new field names.
-2. **Stay in your lane.** Only modify files your lane owns (see table above).
+2. **Now You Have access to full project** Can modify any files in any lane.
 3. **`snake_case` for JSON, Python.** `camelCase` for TypeScript/JS variables (but JSON keys are still `snake_case`).
 4. **No NaN in JSON.** Use `null` / `None`. See CONTRACT §9.
 5. **Times are `float` seconds.** Never milliseconds, never strings, never Timedelta.

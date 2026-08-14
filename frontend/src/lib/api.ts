@@ -57,21 +57,56 @@ export async function fetchClip(clipId: string): Promise<ClipAnalysis> {
   return res.json();
 }
 
-export async function analyzeAudio(file: File, metadata?: { driver?: string; race?: string; lap?: number }): Promise<ClipAnalysis> {
+export function analyzeAudio(
+  file: File,
+  metadata?: { driver?: string; race?: string; lap?: number },
+  onProgress?: (pct: number) => void
+): Promise<ClipAnalysis> {
   if (USE_MOCKS) {
-    // Simulate a delay
-    await new Promise((r) => setTimeout(r, 1500));
-    return { ...MOCK_CLIPS[0], audio_url: "" }; // Return first mock clip as analysis result
+    return new Promise((resolve) => {
+      let pct = 0;
+      const interval = setInterval(() => {
+        pct += 20;
+        if (onProgress) onProgress(pct);
+        if (pct >= 100) {
+          clearInterval(interval);
+          resolve({ ...MOCK_CLIPS[0], audio_url: "" });
+        }
+      }, 300);
+    });
   }
-  const formData = new FormData();
-  formData.append("file", file);
-  if (metadata?.driver) formData.append("driver", metadata.driver);
-  if (metadata?.race) formData.append("race", metadata.race);
-  if (metadata?.lap) formData.append("lap", String(metadata.lap));
 
-  const res = await fetch(`${API}/analyze`, { method: "POST", body: formData });
-  if (!res.ok) throw await apiError(res, "Analysis failed");
-  return res.json();
+  return new Promise((resolve, reject) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    if (metadata?.driver) formData.append("driver", metadata.driver);
+    if (metadata?.race) formData.append("race", metadata.race);
+    if (metadata?.lap) formData.append("lap", String(metadata.lap));
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", `${API}/analyze`);
+
+    xhr.upload.onprogress = (e) => {
+      if (e.lengthComputable && onProgress) {
+        onProgress(Math.round((e.loaded * 100) / e.total));
+      }
+    };
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          resolve(JSON.parse(xhr.responseText));
+        } catch (err) {
+          reject(new Error("Failed to parse response"));
+        }
+      } else {
+        reject(new Error(`Analysis failed: ${xhr.statusText}`));
+      }
+    };
+
+    xhr.onerror = () => reject(new Error("Network error during upload"));
+    xhr.send(formData);
+  });
 }
 
 export async function fetchCorrelation(): Promise<CorrelationSummary> {
