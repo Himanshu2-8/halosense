@@ -3,7 +3,7 @@
   <h1>HaloSense: The Silent Co-Driver</h1>
   <p><strong>A Multimodal AI Pipeline for Real-Time Formula 1 Psychological Telemetry</strong></p>
   
-  [![Demo Video](https://img.shields.io/badge/Demo-Watch_Video-red?style=for-the-badge&logo=youtube)](#demo-video)
+  [![Demo Video](https://img.shields.io/badge/Demo-Watch_Video-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/13aLYUBx-lFcZV4CumY2e5_P2DtSQ_hru/view?usp=sharing)
   [![Team](https://img.shields.io/badge/Team-Code_Breakers-blue?style=for-the-badge)](#-team-code-breakers)
 </div>
 
